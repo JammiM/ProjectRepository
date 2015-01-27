@@ -1,7 +1,7 @@
 ### This folder contains all the installion instructions.
 ======
-Windows
+#### Windows
 ------
-Linux
+#### Linux
 ------
-Mac
+#### Mac
