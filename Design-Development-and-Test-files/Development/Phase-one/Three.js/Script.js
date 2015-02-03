@@ -9,29 +9,17 @@ animate();
 
 
 function initialize() {
-	
 	//Define Camera
 	camera = new THREE.Camera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
 	camera.position.y = 150;
 	camera.position.z = 350;
 //	camera.target.position.y = 150;
-
 //camera.position.set( -15, 10, 15 );
 //camera.lookAt( scene.position );
-
-	
-
-
   //  camera.position.z = 1000;
 
-
-
-
-
-
-
-
-
+  
+  
 	//Define Scene
 	scene = new THREE.Scene();
 	
@@ -43,9 +31,6 @@ function initialize() {
 
 	cube.position.y = 150;
 
-
-
-	
 	//Add the cube to the scene
 	scene.addObject( cube );
 	
@@ -85,7 +70,27 @@ function render(){
 }//render
 
 
+function addCube(){
+//	   cube = new THREE.Mesh(new THREE.CubeGeometry(200, 200, 200), new THREE.MeshBasicMaterial({
+//        wireframe: true,
+//    color: 0xff0000,
+ //     }));
+//	cube.position.y = 150;
 
+	//Add the cube to the scene
+//	scene.addObject( cube );
+}//addCube
 
+function addFiveCubes(){
+//	for(int i= 0; i >= 5 ; i++){
+//	   cube = new THREE.Mesh(new THREE.CubeGeometry(200, 200, 200), new THREE.MeshBasicMaterial({
+//        wireframe: true,
+//    color: 0xff0000,
+ //     }));
+//	cube.position.y = 150;
+	//Add the cube to the scene
+//	scene.addObject( cube );
+//	}//loop
 
+}//addCubes
 
