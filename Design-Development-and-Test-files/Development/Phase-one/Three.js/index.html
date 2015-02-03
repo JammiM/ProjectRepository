@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+<title>Cube</title>
+		<style type="text/css">
+			body {
+				background-color: #f0f0f0;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#info {
+				text-align:center;
+				z-index	: 1;
+				position: absolute;
+				top: 0px; width: 100%;
+				padding: 5px;
+			} 
+			a {
+				color: #0080bb;
+			}			
+		</style>
+
+
+
+		<script src="dat.gui.min.js"></script>
+
+<script>
+
+
+
+var information = function() {         
+  this.speed = 0.8 ;                      /* numbers -> cursor               */
+  this.wireframe = false;          
+  this.addCube = function() {  }     
+  this.logFiles = 6 ;   
+};
+
+window.onload = function() {
+  var text = new information();
+  var gui = new dat.GUI();
+  gui.remember(information);           /*  @localstorage */
+  gui.add(text, 'speed', -5, 5);           /* +range */
+  gui.add(text, 'wireframe').name('Wireframe'); 
+  gui.add(text, 'addCube');
+  gui.addFolder( 'logFiles' ).add(text, 'logFiles', 0, 20);
+  gui.addFolder( 'logFiles' ).open(); 
+/*  gui.close();                       */
+};
+
+</script>
+
+
+</head>
+<body>
+<!--		<script src="Three.js"></script>
+-->
+		<script src="Three.js"></script>
+		<script src="RequestAnimationFrame.js"></script>
+		<script src="Stats.js"></script>
+		<script src="Script.js"></script>
+
+		<div>
+			<canvas width="600" height="600"></canvas>
+		</div>
+</body>
+</html>
