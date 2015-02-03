@@ -71,14 +71,20 @@ function render(){
 
 
 function addCube(){
-//	   cube = new THREE.Mesh(new THREE.CubeGeometry(200, 200, 200), new THREE.MeshBasicMaterial({
-//        wireframe: true,
-//    color: 0xff0000,
- //     }));
-//	cube.position.y = 150;
-
-	//Add the cube to the scene
-//	scene.addObject( cube );
+                var cubeGeometry = new THREE.CubeGeometry(cubeSize,cubeSize,cubeSize);
+                var cubeMaterial = new THREE.MeshBasicMaterial({
+																//    wireframe: true,
+																//    color: 0xff0000,
+																//     }));
+              
+			   var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+			   
+                cube.position.x = // random position within canvas 
+				cube.position.y = // random position within canvas 
+				cube.position.z = // random position within canvas 
+				
+                scene.add(cube);
+           //	scene.addObject( cube );
 }//addCube
 
 function addFiveCubes(){
