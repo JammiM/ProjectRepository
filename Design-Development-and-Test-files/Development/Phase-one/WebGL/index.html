@@ -7,6 +7,33 @@
 
 
 <script>
+  var mvMatrix = mat4.create();
+  var pMatrix = mat4.create();
+
+var shaderProgram;
+  function initShaders() {
+    var fragmentShader = getShader(gl, "shader-fs");
+    var vertexShader = getShader(gl, "shader-vs");
+
+    shaderProgram = gl.createProgram();
+    gl.attachShader(shaderProgram, vertexShader);
+    gl.attachShader(shaderProgram, fragmentShader);
+    gl.linkProgram(shaderProgram);
+
+    if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+      alert("Could not initialise shaders");
+    }
+
+    gl.useProgram(shaderProgram);
+	
+	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+    gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+	
+    shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
+    shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+  }//initShaders
+
+
 
   var triangleVertexPositionBuffer;
   var squareVertexPositionBuffer;
@@ -66,24 +93,32 @@
 		
 }//drawScene
 
-  function initShaders(){
-  
-}//initShaders
+
   
   function initBuffers(){
   
 }//initBuffers
   
-  function initGL(){
+  
+ var gl;
+  function initGL(canvas) {
+    try {
+      gl = canvas.getContext("experimental-webgl");
+      gl.viewportWidth = canvas.width;
+      gl.viewportHeight = canvas.height;
+    } catch(e) {
+    }
+    if (!gl) {
+      alert("Could not initialise WebGL, sorry :-( ");
+    }
   }//initGL
+  
+  
 </script>
-
 
 </head>
 <body onload="webGLStart();">
-
-  <canvas id="lesson01-canvas" style="border: none;" width="500" height="500"></canvas>
-
+  <canvas id="lesson01-canvas" style="border: 3px solid blue;" width="500" height="500"></canvas>
   <br/>
 </body>
 </html>
