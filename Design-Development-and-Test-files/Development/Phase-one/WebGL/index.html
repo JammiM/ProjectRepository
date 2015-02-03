@@ -6,6 +6,17 @@
 
 
 
+<script id="shader-fs" type="x-shader/x-fragment">
+  void main(void) {
+  }
+</script>
+
+<script id="shader-vs" type="x-shader/x-vertex">
+  void main(void) {
+  }
+</script>
+
+
 <script>
   var mvMatrix = mat4.create();
   var pMatrix = mat4.create();
@@ -33,6 +44,8 @@ var shaderProgram;
     shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
   }//initShaders
 
+  function getShader(){
+  }//getShader
 
 
   var triangleVertexPositionBuffer;
