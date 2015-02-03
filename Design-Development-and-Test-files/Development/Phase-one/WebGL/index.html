@@ -8,6 +8,7 @@
 
 <script id="shader-fs" type="x-shader/x-fragment">
   void main(void) {
+      gl_FragColor = vec4(1, 1, 1, 1);
   }
 </script>
 
@@ -18,41 +19,96 @@
 
 
 <script>
-  var mvMatrix = mat4.create();
-  var pMatrix = mat4.create();
 
-var shaderProgram;
+ var gl;
+ var mvMatrix = mat4.create();
+ var pMatrix = mat4.create();
+ var triangleVertexPositionBuffer;
+ var squareVertexPositionBuffer;
+
+ 
+  function initGL(canvas) {
+  //Error Handling to initialise GL
+    try {
+      gl = canvas.getContext("experimental-webgl");
+      gl.viewportWidth = canvas.width;
+      gl.viewportHeight = canvas.height;
+    } catch(e) {
+    }
+    if (!gl) {
+      alert("Could not initialise WebGL, sorry :-( ");
+    }
+  }//initGL
+
   function initShaders() {
+  // gets “fragment and vertex shader”, then adds them to a Shader program.  
     var fragmentShader = getShader(gl, "shader-fs");
     var vertexShader = getShader(gl, "shader-vs");
 
-    shaderProgram = gl.createProgram();
+    shaderProgram = gl.createProgram();// Creates a Shader Program
     gl.attachShader(shaderProgram, vertexShader);
-    gl.attachShader(shaderProgram, fragmentShader);
-    gl.linkProgram(shaderProgram);
+    gl.attachShader(shaderProgram, fragmentShader);//adds v+f to the program
+    gl.linkProgram(shaderProgram);// links them together
 
     if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+	//error handling
       alert("Could not initialise shaders");
     }
 
     gl.useProgram(shaderProgram);
 	
-	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
-    gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+	shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");//references a “attribute”, kept within a program called vertexPositionAttribute
+    gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute); 
+
 	
     shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
     shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+
+	
+	
   }//initShaders
 
-  function getShader(){
+  function getShader(gl, id) {
+//Check the document, if the ID matches the parameter
+
+      var shaderScript = document.getElementById(id);
+      if (!shaderScript) {
+          return null;
+      }
+
+      var str = "";
+      var k = shaderScript.firstChild;
+      while (k) {
+          if (k.nodeType == 3)
+              str += k.textContent;
+          k = k.nextSibling;
+      }
+
+      var shader;
+	  
+       //creates either a fragment or a vertex shader based on its type 
+      if (shaderScript.type == "x-shader/x-fragment") {
+          shader = gl.createShader(gl.FRAGMENT_SHADER);
+      } else if (shaderScript.type == "x-shader/x-vertex") {
+          shader = gl.createShader(gl.VERTEX_SHADER);
+      } else {
+          return null;
+      }
+	  
+      gl.shaderSource(shader, str);// Location of shader
+      gl.compileShader(shader);//compile the shader
+
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+	  //Error handling
+          alert(gl.getShaderInfoLog(shader));
+          return null;
+      }
+
+      return shader;
   }//getShader
 
-
-  var triangleVertexPositionBuffer;
-  var squareVertexPositionBuffer;
-
   function webGLStart(){
-    var canvas = document.getElementById("lesson01-canvas");
+    var canvas = document.getElementById("canvas");
     initGL(canvas);
     initShaders();
     initBuffers();
@@ -106,32 +162,18 @@ var shaderProgram;
 		
 }//drawScene
 
-
-  
   function initBuffers(){
   
 }//initBuffers
   
   
- var gl;
-  function initGL(canvas) {
-    try {
-      gl = canvas.getContext("experimental-webgl");
-      gl.viewportWidth = canvas.width;
-      gl.viewportHeight = canvas.height;
-    } catch(e) {
-    }
-    if (!gl) {
-      alert("Could not initialise WebGL, sorry :-( ");
-    }
-  }//initGL
   
   
 </script>
 
 </head>
 <body onload="webGLStart();">
-  <canvas id="lesson01-canvas" style="border: 3px solid blue;" width="500" height="500"></canvas>
+  <canvas id="canvas" style="border: 3px solid blue;" width="500" height="500"></canvas>
   <br/>
 </body>
 </html>
