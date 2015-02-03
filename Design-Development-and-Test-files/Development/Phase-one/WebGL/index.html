@@ -11,20 +11,17 @@
   var triangleVertexPositionBuffer;
   var squareVertexPositionBuffer;
 
-
-  function webGLStart() {
+  function webGLStart(){
     var canvas = document.getElementById("lesson01-canvas");
     initGL(canvas);
     initShaders();
     initBuffers();
-
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.enable(gl.DEPTH_TEST);
-
     drawScene();
   }//WebGLStart
   
-    function initBuffers() {
+  function initBuffers(){
 	
     triangleVertexPositionBuffer = gl.createBuffer();
 
@@ -54,36 +51,31 @@
     squareVertexPositionBuffer.numItems = 4;
   }//initBuffers
   
-  
-  function drawScene() {
+  function drawScene(){
     gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
     mat4.identity(mvMatrix);
     mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);
-	
-	
+		
     gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 	
     setMatrixUniforms();
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
-	
-	
-	
-	
+		
 }//drawScene
 
-
-
+  function initShaders(){
   
+}//initShaders
   
+  function initBuffers(){
   
+}//initBuffers
   
-  
-  
-  
-  
+  function initGL(){
+  }//initGL
 </script>
 
 
