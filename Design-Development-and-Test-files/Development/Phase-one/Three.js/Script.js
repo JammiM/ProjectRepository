@@ -1,8 +1,12 @@
+//This Script defines the functionality to create cubes.
 
 var startTime	= Date.now();
 var container;
 var camera, scene, renderer, stats;
+var nearPlane = 1 ;
+var farPlane= 1000;
 var cube;
+var cubeSize= 200;
 
 initialize();
 animate();
@@ -10,7 +14,7 @@ animate();
 
 function initialize() {
 	//Define Camera
-	camera = new THREE.Camera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+	camera = new THREE.Camera( 70, window.innerWidth / window.innerHeight, nearPlane, farPlane );
 	camera.position.y = 150;
 	camera.position.z = 350;
 //	camera.target.position.y = 150;
@@ -24,7 +28,7 @@ function initialize() {
 	scene = new THREE.Scene();
 	
 	//Define a Cube
-    cube = new THREE.Mesh(new THREE.CubeGeometry(200, 200, 200), new THREE.MeshBasicMaterial({
+    cube = new THREE.Mesh(new THREE.CubeGeometry(cubeSize, cubeSize, cubeSize), new THREE.MeshBasicMaterial({
         wireframe: true,
     color: 0xff0000,
       }));
@@ -71,7 +75,7 @@ function render(){
 
 
 function addCube(){
-                var cubeGeometry = new THREE.CubeGeometry(cubeSize,cubeSize,cubeSize);
+ /*               var cubeGeometry = new THREE.CubeGeometry(cubeSize,cubeSize,cubeSize);
                 var cubeMaterial = new THREE.MeshBasicMaterial({
 																//    wireframe: true,
 																//    color: 0xff0000,
@@ -85,6 +89,7 @@ function addCube(){
 				
                 scene.add(cube);
            //	scene.addObject( cube );
+		   */
 }//addCube
 
 function addFiveCubes(){
