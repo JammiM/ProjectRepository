@@ -28,6 +28,7 @@
 	</script>
 	<script>
 
+
 	 var gl; //gl context
 	 var mvMatrix = mat4.create();
 	 var pMatrix = mat4.create();//creates matrices
@@ -39,6 +40,12 @@
 	 var triangleVertexColorBuffer;
 	 var squareVertexPositionBuffer;//memory
      var squareVertexColorBuffer;
+
+	 //animation for rotation
+	  var rTri = 0;
+	  var rSquare = 0;
+	 
+	 
 
 	 
 	  function initGL(canvas) {
@@ -123,16 +130,6 @@
 		  return shader;
 	  }//getShader
 
-	  function webGLStart(){
-		var canvas = document.getElementById("canvas");
-		initGL(canvas);
-		initShaders();
-		initBuffers();
-		gl.clearColor(0.0, 0.0, 0.0, 1.0);
-		gl.enable(gl.DEPTH_TEST);
-		drawScene();
-	  }//WebGLStart
-	  
 	  function initBuffers(){
 		//Loads buffers
 		
@@ -209,8 +206,14 @@
 		mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
 		mat4.identity(mvMatrix);
 		
-
+		//<triangle>
 		mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);	
+		
+		//animation
+		mvPushMatrix();
+		mat4.rotate(mvMatrix, degToRad(rTri), [0, 1, 0]);
+			
+		
 		gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
 		gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 		
@@ -219,15 +222,20 @@
 		gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
 		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, triangleVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-		
-		
-		
-		
 		setMatrixUniforms();
 		gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
 
-
+		mvPopMatrix();
+		//</triangle>
+		
+		//<square>
 		mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
+		
+		//animate
+		mvPushMatrix();
+		mat4.rotate(mvMatrix, degToRad(rSquare), [1, 0, 0]);
+			
+		
 		gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
 		gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
@@ -237,6 +245,11 @@
 
 		setMatrixUniforms();
 		gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
+		
+		mvPopMatrix();
+		
+		//</square>			
+			
 			
 	}//drawScene
 	  
@@ -245,6 +258,28 @@
 		gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
 		gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
 	  }
+	  
+	  function webGLStart(){
+		var canvas = document.getElementById("canvas");
+		initGL(canvas);
+		initShaders();
+		initBuffers();
+		gl.clearColor(0.0, 0.0, 0.0, 1.0);
+		gl.enable(gl.DEPTH_TEST);
+		
+		
+		    tick();
+		//drawScene();
+		
+		
+		
+	  }//WebGLStart	 
+
+	  function tick() {
+		requestAnimFrame(tick);
+		drawScene();
+		animate();
+	  }//tick	
 	  
 	  
 	</script>
