@@ -265,9 +265,8 @@
 		initBuffers();
 		gl.clearColor(0.0, 0.0, 0.0, 1.0);
 		gl.enable(gl.DEPTH_TEST);
-		
-		
-		    tick();
+
+	    tick();
 		//drawScene();
 		
 		
@@ -304,6 +303,11 @@
 		}
 		mvMatrix = mvMatrixStack.pop();
 	  }//mvPopMatrix
+	  
+	  function degToRad(degrees) {
+        return degrees * Math.PI / 180;
+      }//degToRad
+	  
 	  
 	</script>
 </head>
