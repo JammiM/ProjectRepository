@@ -4,8 +4,10 @@
 	<!--Define vertex and fragment shader-->
 	<script id="shader-fs" type="x-shader/x-fragment">
 	  precision mediump float;
-
-	  void main(void) {
+	  
+	  varying vec4 vColour;
+	 
+	 void main(void) {
 //		gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0); old code
 		gl_FragColor = vColour; //get the varying from the vertex shader (vColour is now the input.)
 	  }
@@ -211,6 +213,16 @@
 		mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);	
 		gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
 		gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+		
+		
+		//add colour
+		gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
+		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, triangleVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+		
+		
+		
+		
 		setMatrixUniforms();
 		gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
 
@@ -218,6 +230,11 @@
 		mat4.translate(mvMatrix, [3.0, 0.0, 0.0]);
 		gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
 		gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+		//add colour
+		gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexColorBuffer);
+		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, squareVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
 		setMatrixUniforms();
 		gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
 			
