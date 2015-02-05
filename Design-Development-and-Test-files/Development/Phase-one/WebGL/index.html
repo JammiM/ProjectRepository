@@ -44,10 +44,9 @@
 	 //animation for rotation
 	  var rTri = 0;
 	  var rSquare = 0;
+	  var lastTime = 0;
 	 
-	 
-
-	 
+	 	 
 	  function initGL(canvas) {
 	  //Error Handling to initialise GL context
 		try {
@@ -282,6 +281,19 @@
 	  }//tick	
 	  
 	  
+	 //The rotation of objects is based on the elapsed time from when this method was last called.
+	  function animate() {
+		var timeNow = new Date().getTime();
+		if (lastTime != 0) {
+		  var elapsed = timeNow - lastTime;
+
+		  rTri += (90 * elapsed) / 1000.0;
+		  rSquare += (75 * elapsed) / 1000.0;
+		}
+		lastTime = timeNow;
+	  }//animate
+
+	
 	</script>
 </head>
 <body onload="webGLStart();">
