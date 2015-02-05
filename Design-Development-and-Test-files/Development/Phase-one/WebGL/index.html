@@ -32,7 +32,7 @@
 	 var gl; //gl context
 	 var mvMatrix = mat4.create();
 	 var pMatrix = mat4.create();//creates matrices
-	 
+     var mvMatrixStack = [];//A Stack of matrices
 	 
 	 
 	//variables for buffers	
@@ -280,7 +280,6 @@
 		animate();
 	  }//tick	
 	  
-	  
 	 //The rotation of objects is based on the elapsed time from when this method was last called.
 	  function animate() {
 		var timeNow = new Date().getTime();
@@ -293,7 +292,19 @@
 		lastTime = timeNow;
 	  }//animate
 
-	
+	  function mvPushMatrix() {
+		var copy = mat4.create();
+		mat4.set(mvMatrix, copy);
+		mvMatrixStack.push(copy);
+	  }//mvPushMatrix
+
+	  function mvPopMatrix() {
+		if (mvMatrixStack.length == 0) {
+		  throw "Invalid popMatrix!";
+		}
+		mvMatrix = mvMatrixStack.pop();
+	  }//mvPopMatrix
+	  
 	</script>
 </head>
 <body onload="webGLStart();">
