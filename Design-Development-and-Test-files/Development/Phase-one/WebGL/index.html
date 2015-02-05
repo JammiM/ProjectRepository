@@ -6,7 +6,8 @@
 	  precision mediump float;
 
 	  void main(void) {
-		gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+//		gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0); old code
+		gl_FragColor = vColour; //get the varying from the vertex shader (vColour is now the input.)
 	  }
 	</script>
 	<script id="shader-vs" type="x-shader/x-vertex">
