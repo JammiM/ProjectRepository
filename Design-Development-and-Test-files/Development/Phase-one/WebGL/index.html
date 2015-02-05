@@ -66,6 +66,9 @@
 		shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");//references a “attribute”, kept within a program called vertexPositionAttribute
 		gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute); 
 
+        shaderProgram.vertexColorAttribute = gl.getAttribLocation(shaderProgram, "aVertexColour");
+        gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);		
+		
 		shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix"); //projection matrix
 		shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix"); //model-view matrix
 
