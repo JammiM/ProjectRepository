@@ -43,8 +43,12 @@
      var squareVertexColorBuffer;
 
 	 //animation for rotation
-	  var rTri = 0;
-	  var rSquare = 0;
+	 
+	  var rPyramid = 0;
+      var rCube = 0; 
+	 
+	 // var rTri = 0;
+	 // var rSquare = 0;
 	  var lastTime = 0;
 	 
 	 	 
@@ -211,19 +215,19 @@
 		
 		//animation
 		mvPushMatrix();
-		mat4.rotate(mvMatrix, degToRad(rTri), [0, 1, 0]);
+		mat4.rotate(mvMatrix, degToRad(rPyramid), [0, 1, 0]);
 			
-		
-		gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
-		gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		
-		
-		//add colour
-		gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
-		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, triangleVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+		gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
+		gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, pyramidVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+			//add colour
+		gl.bindBuffer(gl.ARRAY_BUFFER, pyramidVertexColorBuffer);
+		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, pyramidVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
 		setMatrixUniforms();
-		gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
+		gl.drawArrays(gl.TRIANGLES, 0, pyramidVertexPositionBuffer.numItems);
+			
+			
 
 		mvPopMatrix();
 		//</triangle>
@@ -233,15 +237,17 @@
 		
 		//animate
 		mvPushMatrix();
-		mat4.rotate(mvMatrix, degToRad(rSquare), [1, 0, 0]);
+		mat4.rotate(mvMatrix, degToRad(rCube), [1, 0, 0]);
 			
 		
-		gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
-		gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, squareVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-
+		gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
+		gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, cubeVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+		
+		
 		//add colour
-		gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexColorBuffer);
-		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, squareVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+		gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexColorBuffer);
+		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, cubeVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
 
 		setMatrixUniforms();
 		gl.drawArrays(gl.TRIANGLE_STRIP, 0, squareVertexPositionBuffer.numItems);
@@ -286,8 +292,8 @@
 		if (lastTime != 0) {
 		  var elapsed = timeNow - lastTime;
 
-		  rTri += (90 * elapsed) / 1000.0;
-		  rSquare += (75 * elapsed) / 1000.0;
+		  rPyramid  += (90 * elapsed) / 1000.0;
+		  rCube  += (75 * elapsed) / 1000.0;
 		}
 		lastTime = timeNow;
 	  }//animate
