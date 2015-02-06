@@ -196,9 +196,7 @@
 		squareVertexColorBuffer.itemSize = 4;
 		squareVertexColorBuffer.numItems = 4;
 		//</square-colour>
-		
-		
-		
+
 		//</square>
 		
 	  }//initBuffers
@@ -226,8 +224,6 @@
 
 		setMatrixUniforms();
 		gl.drawArrays(gl.TRIANGLES, 0, pyramidVertexPositionBuffer.numItems);
-			
-			
 
 		mvPopMatrix();
 		//</triangle>
@@ -252,14 +248,10 @@
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVertexIndexBuffer);
         setMatrixUniforms();
         gl.drawElements(gl.TRIANGLES, cubeVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
-		
-		
-		
+
 		mvPopMatrix();
 		
-		//</square>			
-			
-			
+		//</square>		
 	}//drawScene
 	  
 	  function setMatrixUniforms() {
@@ -278,9 +270,6 @@
 
 	    tick();
 		//drawScene();
-		
-		
-		
 	  }//WebGLStart	 
 
 	  function tick() {
