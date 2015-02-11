@@ -1,5 +1,6 @@
-<html>
+<DOCTYPE html>
 <head>
+	<meta charset="UTF-8"> 
 	<script src="glMatrix-0.9.5.min.js"></script>
     <script src="webgl-utils.js"></script>	
 	<!--Define vertex and fragment shader-->
@@ -85,6 +86,7 @@
 		//error handling
 		  alert("Could not initialise shaders");
 		}
+		
 
 		gl.useProgram(shaderProgram);
 		
@@ -103,42 +105,6 @@
 	  
 	  
 
-
-
-
-
-		
-    
-    
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
 
 	  function getShader(gl, id) {
 	//Check the document, if the ID matches the parameter
@@ -173,6 +139,10 @@
 		  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
 		  //Error handling
 			  alert(gl.getShaderInfoLog(shader));
+			  console.log('Shader log : ' + shader);// compiled successfully
+			  
+			  
+			  
 			  return null;
 		  }
 
