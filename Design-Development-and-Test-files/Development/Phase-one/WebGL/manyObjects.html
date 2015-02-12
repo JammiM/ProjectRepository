@@ -433,6 +433,66 @@
         }
    }
 
+	  var stars = [];
+	  function initWorldObjects() {
+		var numStars = 50;
+
+		for (var i=0; i < numStars; i++) {
+		  stars.push(new Star((i / numStars) * 5.0, i / numStars));
+		}
+	  }//initWorldObjects   
+   
+   
+
+  function Star(startingDistance, rotationSpeed) {
+    this.angle = 0;
+    this.dist = startingDistance;
+    this.rotationSpeed = rotationSpeed;
+
+    // Set the colours to a starting value.
+    this.randomiseColors();
+  }//Star
+  
+  
+  
+  
+  
+  Star.prototype.draw = function(tilt, spin, twinkle) {
+    mvPushMatrix();
+	
+	    // Move to the star's position
+    mat4.rotate(mvMatrix, degToRad(this.angle), [0.0, 1.0, 0.0]);
+    mat4.translate(mvMatrix, [this.dist, 0.0, 0.0]);
+	
+    // Rotate back so that the star is facing the viewer
+    mat4.rotate(mvMatrix, degToRad(-this.angle), [0.0, 1.0, 0.0]);
+    mat4.rotate(mvMatrix, degToRad(-tilt), [1.0, 0.0, 0.0]);
+	
+   if (twinkle) {
+      // Draw a non-rotating star in the alternate "twinkling" color
+      gl.uniform3f(shaderProgram.colorUniform, this.twinkleR, this.twinkleG, this.twinkleB);
+      drawStar();
+    }
+
+    // All stars spin around the Z axis at the same rate
+    mat4.rotate(mvMatrix, degToRad(spin), [0.0, 0.0, 1.0]);
+
+    // Draw the star in its main color
+    gl.uniform3f(shaderProgram.colorUniform, this.r, this.g, this.b);
+    drawStar();	
+	
+    mvPopMatrix();
+
+	};//StarProtoDraw	
+	
+	  var effectiveFPMS = 60 / 1000;
+  Star.prototype.animate = function(elapsedTime) {
+  
+  
+  }//StarProtoAnim
+  
+   
+   
 
     var lastTime = 0;
 
