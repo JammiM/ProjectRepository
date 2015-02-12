@@ -21,36 +21,18 @@
     </script>
 
 <script id="shader-vs" type="x-shader/x-vertex">
-    attribute vec3 aVertexPosition;
-    attribute vec3 aVertexNormal;
-    attribute vec2 aTextureCoord;
+  precision mediump float;
 
-    uniform mat4 uMVMatrix;
-    uniform mat4 uPMatrix;
-    uniform mat3 uNMatrix;
+  varying vec2 vTextureCoord;
 
-    uniform vec3 uAmbientColor;
+  uniform sampler2D uSampler;
 
-    uniform vec3 uLightingDirection;
-    uniform vec3 uDirectionalColor;
+  uniform vec3 uColor;
 
-    uniform bool uUseLighting;
-
-    varying vec2 vTextureCoord;
-    varying vec3 vLightWeighting;
-
-    void main(void) {
-        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
-        vTextureCoord = aTextureCoord;
-
-        if (!uUseLighting) {
-            vLightWeighting = vec3(1.0, 1.0, 1.0);
-        } else {
-            vec3 transformedNormal = uNMatrix * aVertexNormal;
-            float directionalLightWeighting = max(dot(transformedNormal, uLightingDirection), 0.0);
-            vLightWeighting = uAmbientColor + uDirectionalColor * directionalLightWeighting;
-        }
-    }
+  void main(void) {
+    vec4 textureColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
+    gl_FragColor = textureColor * vec4(uColor, 1.0);
+  }
 </script>
 
 
@@ -206,13 +188,9 @@
 
 
 
-    var xRot = 0;
-    var xSpeed = 3;
-
-    var yRot = 0;
-    var ySpeed = -3;
-
-    var z = -5.0;
+    var zoom = -15;
+    var tilt = 90;
+    var spin = 0;
 
 
     var currentlyPressedKeys = {};
@@ -230,29 +208,21 @@
     function handleKeys() {
         if (currentlyPressedKeys[33]) {
             // Page Up
-            z -= 0.05;
+            zoom -= 0.1;
         }
         if (currentlyPressedKeys[34]) {
             // Page Down
-            z += 0.05;
-        }
-        if (currentlyPressedKeys[37]) {
-            // Left cursor key
-            ySpeed -= 1;
-        }
-        if (currentlyPressedKeys[39]) {
-            // Right cursor key
-            ySpeed += 1;
+            zoom += 0.1;
         }
         if (currentlyPressedKeys[38]) {
             // Up cursor key
-            xSpeed -= 1;
+            tilt += 2;
         }
         if (currentlyPressedKeys[40]) {
             // Down cursor key
-            xSpeed += 1;
+            tilt -= 2;
         }
-    }
+    }//handleKeys
 
 
     var cubeVertexPositionBuffer;
@@ -273,6 +243,23 @@
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
         starVertexPositionBuffer.itemSize = 3;
         starVertexPositionBuffer.numItems = 4;
+
+        starVertexTextureCoordBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, starVertexTextureCoordBuffer);
+        var textureCoords = [
+            0.0, 0.0,
+            1.0, 0.0,
+            0.0, 1.0,
+            1.0, 1.0
+        ];
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoords), gl.STATIC_DRAW);
+        starVertexTextureCoordBuffer.itemSize = 2;
+        starVertexTextureCoordBuffer.numItems = 4;
+
+
+
+
+
     }//initbuffers
 
 
