@@ -148,10 +148,10 @@
         gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
         gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
 
-        var normalMatrix = mat3.create();
-        mat4.toInverseMat3(mvMatrix, normalMatrix);
-        mat3.transpose(normalMatrix);
-        gl.uniformMatrix3fv(shaderProgram.nMatrixUniform, false, normalMatrix);
+       // var normalMatrix = mat3.create();
+      //  mat4.toInverseMat3(mvMatrix, normalMatrix);
+      //  mat3.transpose(normalMatrix);
+      //  gl.uniformMatrix3fv(shaderProgram.nMatrixUniform, false, normalMatrix);
     }
 
 
@@ -205,6 +205,8 @@
 	
 	
     function initBuffers() {
+      
+
         starVertexPositionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, starVertexPositionBuffer);
         vertices = [
@@ -228,6 +230,9 @@
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoords), gl.STATIC_DRAW);
         starVertexTextureCoordBuffer.itemSize = 2;
         starVertexTextureCoordBuffer.numItems = 4;
+
+
+
 
 
 
@@ -261,6 +266,13 @@
             spin += 0.1;
         }
    }
+   
+
+
+
+
+
+
 
 	  var stars = [];
 	  function initWorldObjects() {
@@ -273,6 +285,8 @@
    
    
   function drawStar() {
+
+
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, starTexture);
     gl.uniform1i(shaderProgram.samplerUniform, 0);
@@ -285,6 +299,12 @@
 
     setMatrixUniforms();
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, starVertexPositionBuffer.numItems);
+
+
+
+
+
+
 }//drawStar
 
 
@@ -297,9 +317,13 @@
     this.randomiseColors();
   }//Star
   
-  
-  
-  
+
+
+
+
+
+
+
   
   Star.prototype.draw = function(tilt, spin, twinkle) {
     mvPushMatrix();
@@ -333,6 +357,26 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	var effectiveFPMS = 60 / 1000;
   Star.prototype.animate = function(elapsedTime) {
       this.angle += this.rotationSpeed * effectiveFPMS * elapsedTime;
@@ -348,20 +392,53 @@
   };//StarProtoAnim
   
 
-  Star.prototype.randomiseColors = function() {
-    // Give the star a random color for normal
-    // circumstances...
-    this.r = Math.random();
-    this.g = Math.random();
-    this.b = Math.random();
 
-    // When the star is twinkling, we draw it twice, once
-    // in the color below (not spinning) and then once in the
-    // main color defined above.
-    this.twinkleR = Math.random();
-    this.twinkleG = Math.random();
-    this.twinkleB = Math.random();
-  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Star.prototype.randomiseColors = function () {
+        // Give the star a random color for normal
+        // circumstances...
+        this.r = Math.random();
+        this.g = Math.random();
+        this.b = Math.random();
+        // When the star is twinkling, we draw it twice, once
+        // in the color below (not spinning) and then once in the
+        // main color defined above.
+        this.twinkleR = Math.random();
+        this.twinkleG = Math.random();
+        this.twinkleB = Math.random();
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
