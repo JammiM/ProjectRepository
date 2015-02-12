@@ -132,16 +132,14 @@
     }
 
 
-    var glassTexture;
-
+    var starTexture;
     function initTexture() {
-        glassTexture = gl.createTexture();
-        glassTexture.image = new Image();
-        glassTexture.image.onload = function () {
-            handleLoadedTexture(glassTexture)
+        starTexture = gl.createTexture();
+        starTexture.image = new Image();
+        starTexture.image.onload = function () {
+            handleLoadedTexture(starTexture)
         }
-
-        glassTexture.image.src = "glass.gif";
+        starTexture.image.src = "star.gif";
     }
 
 
