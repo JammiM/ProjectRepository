@@ -259,6 +259,8 @@
     var cubeVertexNormalBuffer;
     var cubeVertexTextureCoordBuffer;
     var cubeVertexIndexBuffer;
+	
+	
     function initBuffers() {
         cubeVertexPositionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
@@ -411,69 +413,25 @@
 
         mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
 
+		gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+		gl.enable(gl.BLEND);
+		
+		
+		
         mat4.identity(mvMatrix);
 
-        mat4.translate(mvMatrix, [0.0, 0.0, z]);
+        mat4.translate(mvMatrix, [0.0, 0.0, zoom]);
 
-        mat4.rotate(mvMatrix, degToRad(xRot), [1, 0, 0]);
-        mat4.rotate(mvMatrix, degToRad(yRot), [0, 1, 0]);
+		mat4.rotate(mvMatrix, degToRad(tilt), [1.0, 0.0, 0.0]);
+		
+		
 
-        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, cubeVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-
-        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexNormalBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, cubeVertexNormalBuffer.itemSize, gl.FLOAT, false, 0, 0);
-
-        gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexTextureCoordBuffer);
-        gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, cubeVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
-
-        gl.activeTexture(gl.TEXTURE0);
-        gl.bindTexture(gl.TEXTURE_2D, glassTexture);
-        gl.uniform1i(shaderProgram.samplerUniform, 0);
-
-        var blending = document.getElementById("blending").checked;
-        if (blending) {
-            gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
-            gl.enable(gl.BLEND);
-            gl.disable(gl.DEPTH_TEST);
-            gl.uniform1f(shaderProgram.alphaUniform, parseFloat(document.getElementById("alpha").value));
-        } else {
-            gl.disable(gl.BLEND);
-            gl.enable(gl.DEPTH_TEST);
+        var twinkle = document.getElementById("twinkle").checked;
+        for (var i in stars) {
+            stars[i].draw(tilt, spin, twinkle);
+            spin += 0.1;
         }
-
-        var lighting = document.getElementById("lighting").checked;
-        gl.uniform1i(shaderProgram.useLightingUniform, lighting);
-        if (lighting) {
-            gl.uniform3f(
-                shaderProgram.ambientColorUniform,
-                parseFloat(document.getElementById("ambientR").value),
-                parseFloat(document.getElementById("ambientG").value),
-                parseFloat(document.getElementById("ambientB").value)
-            );
-
-            var lightingDirection = [
-                parseFloat(document.getElementById("lightDirectionX").value),
-                parseFloat(document.getElementById("lightDirectionY").value),
-                parseFloat(document.getElementById("lightDirectionZ").value)
-            ];
-            var adjustedLD = vec3.create();
-            vec3.normalize(lightingDirection, adjustedLD);
-            vec3.scale(adjustedLD, -1);
-            gl.uniform3fv(shaderProgram.lightingDirectionUniform, adjustedLD);
-
-            gl.uniform3f(
-                shaderProgram.directionalColorUniform,
-                parseFloat(document.getElementById("directionalR").value),
-                parseFloat(document.getElementById("directionalG").value),
-                parseFloat(document.getElementById("directionalB").value)
-            );
-        }
-
-        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVertexIndexBuffer);
-        setMatrixUniforms();
-        gl.drawElements(gl.TRIANGLES, cubeVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
-    }
+   }
 
 
     var lastTime = 0;
@@ -483,9 +441,16 @@
         if (lastTime != 0) {
             var elapsed = timeNow - lastTime;
 
-            xRot += (xSpeed * elapsed) / 1000.0;
-            yRot += (ySpeed * elapsed) / 1000.0;
-        }
+        //    xRot += (xSpeed * elapsed) / 1000.0;
+        //    yRot += (ySpeed * elapsed) / 1000.0;
+    
+       for (var i in stars) {
+        stars[i].animate(elapsed);// << recursive method
+      }
+		
+		
+		
+		}
         lastTime = timeNow;
     }
 
