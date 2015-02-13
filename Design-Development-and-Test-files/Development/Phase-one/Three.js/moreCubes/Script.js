@@ -27,7 +27,7 @@ function initialize() {
 	//Define Scene
 	scene = new THREE.Scene();
 	
-	//Define a Cube
+	/*Define a Cube
     cube = new THREE.Mesh(new THREE.CubeGeometry(cubeSize, cubeSize, cubeSize), new THREE.MeshBasicMaterial({
         wireframe: true,
     color: 0xff0000,
@@ -37,7 +37,7 @@ function initialize() {
 
 	//Add the cube to the scene
 	scene.addObject( cube );
-	
+*/	
 	//Create an element
 	container = document.createElement( 'div' );
 	
@@ -67,7 +67,6 @@ function animate() {
 
 
 function render(){
-
 	cube.rotation.x += 0.02;
 	cube.rotation.y += 0.02;
 	renderer.render( scene, camera );
