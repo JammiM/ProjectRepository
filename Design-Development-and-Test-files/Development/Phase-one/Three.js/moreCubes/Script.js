@@ -2,9 +2,10 @@
 
 $(function () {
 
+    var stats = initStats();
 
 	//Define Scene
-	scene = new THREE.Scene();
+	var scene = new THREE.Scene();
 
 
 	//<Define Camera>
@@ -15,18 +16,6 @@ $(function () {
     camera.lookAt(scene.position);
   	//</Define Camera>
   
-
-
-	stats = new Stats();
-	stats.domElement.style.position = 'absolute';
-	stats.domElement.style.top = '0px';
-	//container.appendChild( stats.domElement );
-	
-
-
-
-
-
 
 
 //<plane>
@@ -58,6 +47,21 @@ $(function () {
         spotLight.castShadow = true;
         scene.add( spotLight );
 //<lights>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
