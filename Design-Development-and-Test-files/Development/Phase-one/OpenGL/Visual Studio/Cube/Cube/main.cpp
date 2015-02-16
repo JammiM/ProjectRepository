@@ -18,6 +18,7 @@ void initializeRendering(void);
 void keyboardInputHandler(unsigned char c, int x, int y);
 void mouseInputHandler(int button, int state, int x,int y);
 
+
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB );
@@ -33,6 +34,20 @@ int main(int argc, char** argv) {
 	glutMainLoop();
 
 }//main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void initializeRendering(void){
 	glClearColor(0,0,0,1);
