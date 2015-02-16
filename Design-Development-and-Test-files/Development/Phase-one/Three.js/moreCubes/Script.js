@@ -2,7 +2,7 @@
 
 $(function () {
 
-    var stats = initStats();
+   // var stats = initStats();
 
 	//Define Scene
 	var scene = new THREE.Scene();
@@ -49,9 +49,34 @@ $(function () {
 //<lights>
 
 
+//<renderer>
+        var renderer = new THREE.WebGLRenderer();
+
+        renderer.setClearColorHex(0xEEEEEE, 1.0);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMapEnabled = true;
+
+//</renderer>
 
 
+        render();
 
+        function render() {
+
+            // rotate the cubes around its axes
+            scene.traverse(function(e) {
+                if (e instanceof THREE.Mesh && e != plane ) {
+
+                    e.rotation.x+=controls.rotationSpeed;
+                    e.rotation.y+=controls.rotationSpeed;
+                    e.rotation.z+=controls.rotationSpeed;
+                }
+            });
+
+            // render using requestAnimationFrame
+            requestAnimationFrame(render);
+            renderer.render(scene, camera);
+        }
 
 
 
