@@ -74,7 +74,18 @@
 						
 						//</buffer>
 						
+						//<Program setup>
+					     gl.useProgram(program);
+     
+						program.uColor = gl.getUniformLocation(program, "uColor");
+						gl.uniform4fv(program.uColor, [0.0, 0.3, 0.0, 1.0]);
+						 
+						program.aVertexPosition = gl.getAttribLocation(program, "aVertexPosition");
+						gl.enableVertexAttribArray(program.aVertexPosition);
+						gl.vertexAttribPointer(program.aVertexPosition, itemSize, gl.FLOAT, false, 0, 0);	
 						
+						
+						//</Program setup>
 						
 						
 						
