@@ -1,5 +1,6 @@
     <html>
-    <head>           
+<head>
+	<meta charset="UTF-8">        
             <script id="vertex" type="x-shader">
 				attribute vec3 vertexPosition;
 
@@ -252,6 +253,12 @@
 						// Set the values
 						gl.uniformMatrix4fv(uModelViewMatrix, false, new Float32Array(perspectiveMatrix));
 						gl.uniformMatrix4fv(uPerspectiveMatrix, false, new Float32Array(modelViewMatrix));
+						
+						
+						//gl.uniformMatrix4fv(uModelViewMatrix, false, new Float32Array(modelViewMatrix));
+						//gl.uniformMatrix4fv(uPerspectiveMatrix, false, new Float32Array(perspectiveMatrix));	
+						
+
 						// Draw the triangles in the vertex buffer. The first parameter specifies what
 						// drawing mode to use. This can be POINTS, LINE_STRIP, LINE_LOOP, LINES, TRIANGLE_STRIP,
 						// TRIANGLE_FAN and TRIANGLES
