@@ -61,48 +61,115 @@ gl_FragColor = vec4(vColor, 1.);\n\
 
   GL.useProgram(SHADER_PROGRAM);
 
-  /*========================= THE TRIANGLE ========================= */
+
+
+  /*========================= THE CUBE ========================= */
   //POINTS :
-  var triangle_vertex=[
-    -1,-1, //first summit -> bottom left of the viewport
-    0,0,1,
-    1,-1, //bottom right of the viewport
+  var cube_vertex=[
+    -1,-1,-1,
+
+    0,0,0,
+
+    1,-1,-1,
+
+    1,0,0,
+
+    1,1,-1,
+
     1,1,0,
-    1,1,  //top right of the viewport
-    1,0,0
+
+    -1,1,-1,
+
+    0,1,0,
+
+    -1,-1,1,
+
+    0,0,1,
+
+    1,-1,1,
+
+    1,0,1,
+
+    1,1,1,
+
+    1,1,1,
+
+    -1,1,1,
+
+    0,1,1
   ];
 
-  var TRIANGLE_VERTEX= GL.createBuffer ();
-  GL.bindBuffer(GL.ARRAY_BUFFER, TRIANGLE_VERTEX);
+  var CUBE_VERTEX= GL.createBuffer ();
+  GL.bindBuffer(GL.ARRAY_BUFFER, CUBE_VERTEX);
   GL.bufferData(GL.ARRAY_BUFFER,
-                new Float32Array(triangle_vertex),
+                new Float32Array(cube_vertex),
     GL.STATIC_DRAW);
 
   //FACES :
-  var triangle_faces = [0,1,2];
-  var TRIANGLE_FACES= GL.createBuffer ();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, TRIANGLE_FACES);
+  var cube_faces = [
+    0,1,2,
+    0,2,3,
+
+    4,5,6,
+    4,6,7,
+
+    0,3,7,
+    0,4,7,
+
+    1,2,6,
+    1,5,6,
+
+    2,3,6,
+    3,7,6,
+
+    0,1,5,
+    0,4,5
+
+  ];
+  var CUBE_FACES= GL.createBuffer ();
+  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, CUBE_FACES);
   GL.bufferData(GL.ELEMENT_ARRAY_BUFFER,
-                new Uint16Array(triangle_faces),
+                new Uint16Array(cube_faces),
     GL.STATIC_DRAW);
 
+  /*========================= MATRIX ========================= */
 
+  var PROJMATRIX=LIBS.get_projection(40, CANVAS.width/CANVAS.height, 1, 100);
+  var MOVEMATRIX=LIBS.get_I4();
+  var VIEWMATRIX=LIBS.get_I4();
+
+
+
+  LIBS.translateZ(VIEWMATRIX, -6);
   /*========================= DRAWING ========================= */
-  GL.clearColor(0.0, 0.0, 0.0, 0.0);
 
-  var animate=function() {
+  GL.enable(GL.DEPTH_TEST);
+  GL.depthFunc(GL.LEQUAL);
+  GL.clearColor(0.0, 0.0, 0.0, 0.0);
+  GL.clearDepth(1.0);
+
+  var time_old=0;
+  var animate=function(time) {
+    var dt=time-time_old;
+    LIBS.rotateZ(MOVEMATRIX, dt*0.001);
+    LIBS.rotateY(MOVEMATRIX, dt*0.002);
+    LIBS.rotateX(MOVEMATRIX, dt*0.003);
+    time_old=time;
 
     GL.viewport(0.0, 0.0, CANVAS.width, CANVAS.height);
-    GL.clear(GL.COLOR_BUFFER_BIT);
-    GL.bindBuffer(GL.ARRAY_BUFFER, TRIANGLE_VERTEX);
-    GL.vertexAttribPointer(_position, 2, GL.FLOAT, false,4*(2+3),0) ;
-    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false,4*(2+3),2*4) ;
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, TRIANGLE_FACES);
-    GL.drawElements(GL.TRIANGLES, 3, GL.UNSIGNED_SHORT, 0);
+    GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT);
+    GL.uniformMatrix4fv(_Pmatrix, false, PROJMATRIX);
+    GL.uniformMatrix4fv(_Vmatrix, false, VIEWMATRIX);
+    GL.uniformMatrix4fv(_Mmatrix, false, MOVEMATRIX);
+    GL.bindBuffer(GL.ARRAY_BUFFER, CUBE_VERTEX);
+    GL.vertexAttribPointer(_position, 3, GL.FLOAT, false,4*(3+3),0);
+    GL.vertexAttribPointer(_color, 3, GL.FLOAT, false,4*(3+3),3*4);
+    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, CUBE_FACES);
+    GL.drawElements(GL.TRIANGLES, 6*2*3, GL.UNSIGNED_SHORT, 0);
 
     GL.flush();
 
     window.requestAnimationFrame(animate);
   };
-  animate();
+  animate(0);
 };
