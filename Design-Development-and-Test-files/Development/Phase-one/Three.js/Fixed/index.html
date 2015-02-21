@@ -8,13 +8,50 @@
 		<script src="RequestAnimationFrame.js"></script>
 		<script src="Stats.js"></script>
 		<script>
-			function initialise(){}//initialise
-			function addCubes(){}//addCubes
+
+			var CUBE_SIZE = 250;
+
+
+			initialise();
+
+			function initialise(){
+
+
+
+
+				//init 3D world
+				var container = document.createElement('div');
+				document.body.appendChild(container);
+				renderer = new THREE.WebGLRenderer({
+					antialias : false,
+					clearAlpha : 1
+				});
+				container.appendChild(renderer.domElement);
+
+				geometry = new THREE.CubeGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
+				addCubes();
+
+				resizeWindow(null);
+				update();
+
+
+
+
+
+			}//initialise
+			function addCubes(){
+
+
+
+
+			}//addCubes
 			function buttonPress(){}//buttonPress
 			function update(){}//update
 			function render(){}//render
 			function resizeWindow(){}//resizeWindow
 		</script>
 		<canvas></canvas>
+		<p>Number of cubes</p>
+		
 </body>
 </html>
