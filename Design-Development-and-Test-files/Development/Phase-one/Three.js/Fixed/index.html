@@ -11,11 +11,15 @@
 		<script>
 
 			var CUBE_SIZE = 250;
+			var INCREASEBYNUMBER = 100;
+			var DISTANCE = 1000;
+			
 			var scene;
 			var renderer;
 			var camera;
 			var stats;
 			var cubes = [];
+			var material;
 			var cubeHolder;
 			var rotSpeed;
 			var cubeCount = 0;
@@ -40,11 +44,13 @@
 				container.appendChild(renderer.domElement);
 
 
-
 				camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 20, 3000);
 				camera.position.z = 1000;
 				scene = new THREE.Scene();
 				scene.add(camera);
+
+				cubeHolder = new THREE.Object3D();
+				scene.add(cubeHolder);				
 
 
 
@@ -61,7 +67,6 @@
 						transparent : true
 					});
 					material.color = new THREE.Color(0xFFFFFF * Math.random());
-					materials.push(material)
 
 
 
@@ -78,6 +83,23 @@
 
 			}//initialise
 			function addCubes(){
+				//init cubes
+				for(var j = 0; j < DISTANCE; j++) {
+					var cube = new THREE.Mesh(geometry, material);
+					
+
+					cubeHolder.add(cube);
+					cubes.push(cube);
+
+					cube.position.x = Math.random() * DISTANCE - DISTANCE / 2;
+					cube.position.y = Math.random() * DISTANCE - DISTANCE / 2;
+					cube.position.z = Math.random() * DISTANCE - DISTANCE / 2;
+
+				}//loopEnd
+
+
+
+
 
 
 
