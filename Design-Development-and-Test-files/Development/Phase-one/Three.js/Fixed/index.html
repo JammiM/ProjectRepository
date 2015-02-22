@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+	<meta charset="UTF-8"> 
 <head>
 </head>
 <body>
@@ -10,7 +11,17 @@
 		<script>
 
 			var CUBE_SIZE = 250;
-
+			var scene;
+			var renderer;
+			var camera;
+			var stats;
+			var cubes = [];
+			var cubeHolder;
+			var rotSpeed;
+			var cubeCount = 0;
+			var geometry;
+			var windowHalfX;
+			var windowHalfY;
 
 			initialise();
 
@@ -36,6 +47,21 @@
 				scene.add(camera);
 
 
+
+
+				var light = new THREE.PointLight(0xffeeaa, 1);
+				light.position = new THREE.Vector3(-1000, 1000, -1000);
+				scene.add(light);
+
+
+				var material = new THREE.MeshLambertMaterial({
+						opacity : 0.5,
+						blending : THREE.AdditiveBlending,
+						depthTest : false,
+						transparent : true
+					});
+					material.color = new THREE.Color(0xFFFFFF * Math.random());
+					materials.push(material)
 
 
 
