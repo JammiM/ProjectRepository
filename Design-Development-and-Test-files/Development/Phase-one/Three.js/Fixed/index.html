@@ -14,13 +14,14 @@
 			var CUBE_SIZE = 250;
 			var INCREASEBYNUMBER = 100;
 			var DISTANCE = 1000;
+			var MATERIAL_NUMBER = 30;
 			
 			var scene;
 			var renderer;
 			var camera;
 			var stats;
 			var cubes = [];
-			var material;
+			var materials =[];
 			var cubeHolder;
 			var cubeCount = 0;
 			var geometry;
@@ -30,11 +31,6 @@
 			initialise();
 
 			function initialise(){
-
-
-
-
-				//init 3D world
 				var container = document.createElement('div');
 				document.body.appendChild(container);
 				renderer = new THREE.WebGLRenderer({
@@ -59,20 +55,33 @@
 				light.position = new THREE.Vector3(-1000, 1000, -1000);
 				scene.add(light);
 
-
-				var material = new THREE.MeshLambertMaterial({
+				for(var i = 0; i < MATERIAL_NUMBER; i++) {
+					var material = new THREE.MeshLambertMaterial({
 						opacity : 0.5,
 						blending : THREE.AdditiveBlending,
 						depthTest : false,
 						transparent : true
 					});
 					material.color = new THREE.Color(0xFFFFFF * Math.random());
+					materials.push(material)
+				}
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 				geometry = new THREE.CubeGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
-				//addCubes();
+
+				addCubes();
 
 
 
@@ -90,26 +99,10 @@
 				window.addEventListener('buttonPress', onButtonPress, false);
 
 
-
 				onResizeWindow(null);
 				update();
 
 
-/*
-				//add stats
-				stats = new Stats();
-				stats.domElement.style.position = 'absolute';
-				stats.domElement.style.top = '0px';
-				container.appendChild(stats.domElement);
-
-				//match speed with Stage3D version in degrees
-				rotSpeed = .3 / 360 * Math.PI * 2;
-
-				window.addEventListener('resize', onWindowResize, false);
-				window.addEventListener('mousemove', onMouseMove, false);
-				window.addEventListener('keydown', onKeyDown, false);
-
-*/
 			}//initialise
 			function addCubes(){
 				//init cubes
@@ -117,7 +110,8 @@
 				cubeCount += INCREASEBYNUMBER;
 
 				for(var j = 0; j < INCREASEBYNUMBER; j++) {
-					var cube = new THREE.Mesh(geometry, material);
+					var cube = new THREE.Mesh(geometry,  materials[j % MATERIAL_NUMBER]);
+
 					
 
 					cubeHolder.add(cube);
@@ -126,7 +120,6 @@
 					cube.position.x = Math.random() * DISTANCE - DISTANCE / 2;
 					cube.position.y = Math.random() * DISTANCE - DISTANCE / 2;
 					cube.position.z = Math.random() * DISTANCE - DISTANCE / 2;
-
 				}//loopEnd
 
 
@@ -147,7 +140,6 @@
 			function render(){
 				camera.lookAt(cubeHolder.position);
 				renderer.render(scene, camera);
-
 			}//render
 			function onResizeWindow(event){				
 				windowHalfX = window.innerWidth / 2;
