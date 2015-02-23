@@ -95,11 +95,6 @@
 
 
 /*
-
-
-
-
-
 				//add stats
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
@@ -114,26 +109,13 @@
 				window.addEventListener('keydown', onKeyDown, false);
 
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			}//initialise
 			function addCubes(){
 				//init cubes
-				for(var j = 0; j < DISTANCE; j++) {
+
+				cubeCount += INCREASEBYNUMBER;
+				
+				for(var j = 0; j < INCREASEBYNUMBER; j++) {
 					var cube = new THREE.Mesh(geometry, material);
 					
 
@@ -145,6 +127,14 @@
 					cube.position.z = Math.random() * DISTANCE - DISTANCE / 2;
 
 				}//loopEnd
+
+
+
+				document.getElementById("numOfCubes").innerText = "Number of cubes " + cubeCount + ".";
+
+
+
+
 			}//addCubes
 			function onButtonPress(event){				
 				if(event.keyCode == '32'){
@@ -170,7 +160,7 @@
 			}//resizeWindow
 		</script>
 		<canvas></canvas>
-		<p>Number of cubes</p>
+		<div id="numOfCubes">Number of cubes.</div>
 		
 </body>
 </html>
