@@ -72,7 +72,7 @@
 
 
 				geometry = new THREE.CubeGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
-				addCubes();
+				//addCubes();
 
 				resizeWindow(null);
 				update();
@@ -115,8 +115,18 @@
 				requestAnimationFrame(update);
 				render();
 			}//update
-			function render(){}//render
-			function resizeWindow(){}//resizeWindow
+			function render(){
+				camera.lookAt(cubeHolder.position);
+				renderer.render(scene, camera);
+
+			}//render
+			function resizeWindow(event){				
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+			}//resizeWindow
 		</script>
 		<canvas></canvas>
 		<p>Number of cubes</p>
