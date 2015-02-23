@@ -8,6 +8,7 @@
 		<script src="Detector.js"></script>
 		<script src="RequestAnimationFrame.js"></script>
 		<script src="Stats.js"></script>
+		<div id="numOfCubes">Number of cubes.</div>
 		<script>
 
 			var CUBE_SIZE = 250;
@@ -114,7 +115,7 @@
 				//init cubes
 
 				cubeCount += INCREASEBYNUMBER;
-				
+
 				for(var j = 0; j < INCREASEBYNUMBER; j++) {
 					var cube = new THREE.Mesh(geometry, material);
 					
@@ -131,9 +132,6 @@
 
 
 				document.getElementById("numOfCubes").innerText = "Number of cubes " + cubeCount + ".";
-
-
-
 
 			}//addCubes
 			function onButtonPress(event){				
@@ -160,7 +158,7 @@
 			}//resizeWindow
 		</script>
 		<canvas></canvas>
-		<div id="numOfCubes">Number of cubes.</div>
+
 		
 </body>
 </html>
