@@ -145,18 +145,25 @@
 				}
 				}//buttonPress
 			function update(){
-				requestAnimationFrame(animate);
+				requestAnimationFrame(update);
 				render();
-				stats.update();
-			}
-			
-			function render(){}
+				stats.update();				
+			}//update
+			function render(){
+				camera.lookAt(cubeHolder.position);
+
+
+
 
 				for(var i = 0; i < cubeCount; i++) {
 					cubes[i].rotation.x += rotSpeed;
 				}
+
+
+
 				renderer.render(scene, camera);
-			}
+
+			}//render
 			function onResizeWindow(event){				
 				windowHalfX = window.innerWidth / 2;
 				windowHalfY = window.innerHeight / 2;
