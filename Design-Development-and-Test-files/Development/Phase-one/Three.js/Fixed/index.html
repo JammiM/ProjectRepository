@@ -74,13 +74,13 @@
 				geometry = new THREE.CubeGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
 				//addCubes();
 
-				resizeWindow(null);
+				window.addEventListener('resizeWindow', onResizeWindow, false);
+				window.addEventListener('buttonPress', onButtonPress, false);
+
+
+
+				onResizeWindow(null);
 				update();
-
-
-
-
-
 			}//initialise
 			function addCubes(){
 				//init cubes
@@ -96,20 +96,11 @@
 					cube.position.z = Math.random() * DISTANCE - DISTANCE / 2;
 
 				}//loopEnd
-
-
-
-
-
-
-
-
 			}//addCubes
-			function buttonPress(){				
-				//if(
-					// spacebar is down
-				//	) {
+			function onButtonPress(event){				
+				if(event.keyCode == '32'){
 					addCubes();
+				}
 				}//buttonPress
 			function update(){
 				requestAnimationFrame(update);
@@ -120,7 +111,7 @@
 				renderer.render(scene, camera);
 
 			}//render
-			function resizeWindow(event){				
+			function onResizeWindow(event){				
 				windowHalfX = window.innerWidth / 2;
 				windowHalfY = window.innerHeight / 2;
 				camera.aspect = window.innerWidth / window.innerHeight;
