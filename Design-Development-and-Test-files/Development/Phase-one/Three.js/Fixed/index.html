@@ -21,7 +21,6 @@
 			var cubes = [];
 			var material;
 			var cubeHolder;
-			var rotSpeed;
 			var cubeCount = 0;
 			var geometry;
 			var windowHalfX;
@@ -74,6 +73,18 @@
 				geometry = new THREE.CubeGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
 				//addCubes();
 
+
+
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				container.appendChild(stats.domElement);
+
+
+
+
+
+
 				window.addEventListener('resizeWindow', onResizeWindow, false);
 				window.addEventListener('buttonPress', onButtonPress, false);
 
@@ -81,6 +92,44 @@
 
 				onResizeWindow(null);
 				update();
+
+
+/*
+
+
+
+
+
+				//add stats
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				container.appendChild(stats.domElement);
+
+				//match speed with Stage3D version in degrees
+				rotSpeed = .3 / 360 * Math.PI * 2;
+
+				window.addEventListener('resize', onWindowResize, false);
+				window.addEventListener('mousemove', onMouseMove, false);
+				window.addEventListener('keydown', onKeyDown, false);
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			}//initialise
 			function addCubes(){
 				//init cubes
@@ -105,6 +154,7 @@
 			function update(){
 				requestAnimationFrame(update);
 				render();
+				stats.update();				
 			}//update
 			function render(){
 				camera.lookAt(cubeHolder.position);
