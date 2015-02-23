@@ -12,7 +12,7 @@
 		<script>
 
 			var CUBE_SIZE = 250;
-			var INCREASEBYNUMBER = 100;
+			var INCREASEBYNUMBER = 10;
 			var DISTANCE = 1000;
 			var MATERIAL_NUMBER = 30;
 			
@@ -25,12 +25,18 @@
 			var cubeHolder;
 			var cubeCount = 0;
 			var geometry;
+			var rotSpeed;			
 			var windowHalfX;
 			var windowHalfY;
 
 			initialise();
 
 			function initialise(){
+
+
+
+
+				//init 3D world
 				var container = document.createElement('div');
 				document.body.appendChild(container);
 				renderer = new THREE.WebGLRenderer({
@@ -55,8 +61,14 @@
 				light.position = new THREE.Vector3(-1000, 1000, -1000);
 				scene.add(light);
 
+
+				var light2 = new THREE.PointLight(0xFFFFFF, 1);
+				light2.position = new THREE.Vector3(1000, 1000, 1000);
+				scene.add(light2);
+
+
 				for(var i = 0; i < MATERIAL_NUMBER; i++) {
-					var material = new THREE.MeshLambertMaterial({
+				var material = new THREE.MeshLambertMaterial({
 						opacity : 0.5,
 						blending : THREE.AdditiveBlending,
 						depthTest : false,
@@ -70,7 +82,7 @@
 
 
 
-
+				rotSpeed = .3 / 360 * Math.PI * 2;
 
 
 
@@ -81,7 +93,6 @@
 
 				geometry = new THREE.CubeGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
 
-				addCubes();
 
 
 
@@ -99,6 +110,7 @@
 				window.addEventListener('buttonPress', onButtonPress, false);
 
 
+				addCubes();
 				onResizeWindow(null);
 				update();
 
@@ -111,7 +123,6 @@
 
 				for(var j = 0; j < INCREASEBYNUMBER; j++) {
 					var cube = new THREE.Mesh(geometry,  materials[j % MATERIAL_NUMBER]);
-
 					
 
 					cubeHolder.add(cube);
@@ -120,6 +131,7 @@
 					cube.position.x = Math.random() * DISTANCE - DISTANCE / 2;
 					cube.position.y = Math.random() * DISTANCE - DISTANCE / 2;
 					cube.position.z = Math.random() * DISTANCE - DISTANCE / 2;
+
 				}//loopEnd
 
 
@@ -128,7 +140,7 @@
 
 			}//addCubes
 			function onButtonPress(event){				
-				if(event.keyCode == '32'){
+				if(event.keyCode == '70'){
 					addCubes();
 				}
 				}//buttonPress
@@ -139,7 +151,18 @@
 			}//update
 			function render(){
 				camera.lookAt(cubeHolder.position);
+
+
+
+
+				for(var i = 0; i < cubeCount; i++) {
+					cubes[i].rotation.x += rotSpeed;
+				}
+
+
+
 				renderer.render(scene, camera);
+
 			}//render
 			function onResizeWindow(event){				
 				windowHalfX = window.innerWidth / 2;
