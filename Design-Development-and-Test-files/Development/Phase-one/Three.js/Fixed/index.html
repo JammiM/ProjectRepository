@@ -68,13 +68,12 @@
 
 
 				for(var i = 0; i < MATERIAL_NUMBER; i++) {
-				var material = new THREE.MeshLambertMaterial({
-						opacity : 0.5,
+					var material = new THREE.MeshLambertMaterial({
+						opacity : 1,
 						blending : THREE.AdditiveBlending,
 						depthTest : false,
-						transparent : true
+						transparent : false
 					});
-					material.color = new THREE.Color(0xFFFFFF * Math.random());
 					materials.push(material)
 				}
 
