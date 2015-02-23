@@ -32,22 +32,32 @@
 			initialise();
 
 			function initialise(){
-
-
-
-
-				//init 3D world
 				var container = document.createElement('div');
 				document.body.appendChild(container);
 				renderer = new THREE.WebGLRenderer({
 					antialias : false,
-					clearAlpha : 1
+					clearAlpha : 0
 				});
 				container.appendChild(renderer.domElement);
 
 
 				camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 20, 3000);
-				camera.position.z = 1000;
+				camera.position.z =3000;
+
+
+
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				renderer.setClearColorHex( 0x000000, 1 );
+
+
+
+
+
 				scene = new THREE.Scene();
 				scene.add(camera);
 
@@ -77,37 +87,16 @@
 					materials.push(material)
 				}
 
-
-
-
-
 				rotSpeed = .3 / 360 * Math.PI * 2;
 
-
-
-
-
-
-
-
 				geometry = new THREE.CubeGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
-
-
-
 
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
 				stats.domElement.style.top = '0px';
 				container.appendChild(stats.domElement);
 
-
-
-
-
-
-				window.addEventListener('resizeWindow', onResizeWindow, false);
 				window.addEventListener('buttonPress', onButtonPress, false);
-
 
 				addCubes();
 				onResizeWindow(null);
@@ -133,8 +122,6 @@
 
 				}//loopEnd
 
-
-
 				document.getElementById("numOfCubes").innerText = "Number of cubes " + cubeCount + ".";
 
 			}//addCubes
@@ -149,20 +136,13 @@
 				stats.update();
 			}
 			
-			function render(){}
-
+			function render(){
 				for(var i = 0; i < cubeCount; i++) {
 					cubes[i].rotation.x += rotSpeed;
 				}
 				renderer.render(scene, camera);
 			}
-			function onResizeWindow(event){				
-				windowHalfX = window.innerWidth / 2;
-				windowHalfY = window.innerHeight / 2;
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-				renderer.setSize(window.innerWidth, window.innerHeight);
-			}//resizeWindow
+
 		</script>
 		<canvas></canvas>
 
