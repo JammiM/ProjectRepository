@@ -5,10 +5,11 @@
 </head>
 <body>
 <script src="Three.js"></script>
+		<div id="info"></div>
 		<script src="Detector.js"></script>
 		<script src="RequestAnimationFrame.js"></script>
 		<script src="Stats.js"></script>
-		<div id="numOfCubes">Number of cubes.</div>
+		<!--<div id="numOfCubes">Number of cubes.</div> --> 
 		<script>
 
 			var CUBE_SIZE = 250;
@@ -29,6 +30,7 @@
 			var windowHalfX;
 			var windowHalfY;
 
+
 			initialise();
 
 			function initialise(){
@@ -41,7 +43,7 @@
 				container.appendChild(renderer.domElement);
 
 
-				camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 20, 3000);
+				camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 20, 4000);
 				camera.position.z =3000;
 
 
@@ -124,7 +126,7 @@
 				document.getElementById("numOfCubes").innerText = "Number of cubes " + cubeCount + ".";
 
 			}//addCubes
-			function onButtonPress(event){				
+			function onButtonPress(event){
 				if(event.keyCode == '70'){
 					addCubes();
 				}
@@ -143,8 +145,14 @@
 			}
 
 		</script>
-		<canvas></canvas>
 
+
+		<canvas>
+		
+
+		</canvas>
+
+		<!--	<div id="numOfCubes">Number of cubes.</div> -->
 		
 </body>
 </html>
