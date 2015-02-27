@@ -2,10 +2,30 @@
 <html lang="en">
 	<meta charset="UTF-8"> 
 <head>
+		<style type="text/css">
+			body {
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 16px;
+				text-align: center;
+			}
+			#info {
+				color: #fff;
+				text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+				position: absolute;
+				top: 0px;
+				width: 100%;
+				padding: 5px;
+				z-index: 100;
+			}
+
+		</style>
 </head>
 <body>
+			<div id="info"></div>
 <script src="Three.js"></script>
-		<div id="info"></div>
 		<script src="Detector.js"></script>
 		<script src="RequestAnimationFrame.js"></script>
 		<script src="Stats.js"></script>
@@ -13,7 +33,7 @@
 		<script>
 
 			var CUBE_SIZE = 250;
-			var INCREASEBYNUMBER = 10;
+			var INCREASEBYNUMBER = 1;
 			var DISTANCE = 1000;
 			var MATERIAL_NUMBER = 30;
 			
@@ -98,9 +118,10 @@
 				stats.domElement.style.top = '0px';
 				container.appendChild(stats.domElement);
 
+				addCubes();
+				
 				window.addEventListener('buttonPress', onButtonPress, false);
 
-				addCubes();
 				update();
 
 
@@ -123,11 +144,11 @@
 
 				}//loopEnd
 
-				document.getElementById("numOfCubes").innerText = "Number of cubes " + cubeCount + ".";
+				document.getElementById("info").innerText = "WebGL Cubes. Rendering " + cubeCount + " cubes. Press spacebar to increase.";
 
 			}//addCubes
 			function onButtonPress(event){
-				if(event.keyCode == '70'){
+				if(event.keyCode == '32'){
 					addCubes();
 				}
 				}//buttonPress
@@ -138,21 +159,17 @@
 			}
 			
 			function render(){
+
+
+
+				camera.lookAt(cubeHolder.position);
+				
 				for(var i = 0; i < cubeCount; i++) {
 					cubes[i].rotation.x += rotSpeed;
 				}
 				renderer.render(scene, camera);
 			}
-
 		</script>
-
-
-		<canvas>
-		
-
-		</canvas>
-
-		<!--	<div id="numOfCubes">Number of cubes.</div> -->
-		
+<canvas></canvas>
 </body>
 </html>
