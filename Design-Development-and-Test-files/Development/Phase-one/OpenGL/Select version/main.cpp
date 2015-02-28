@@ -17,10 +17,12 @@ int  main ()
 	        std::cout<<"Driver supports OpenGL 2.0\nDetails:"<<std::endl;
 	    }
 	}
-
 	glutInit(&__argc,__argv);
+//For OpenGL v3 and above this call is need to specify the version type.
+//glutInitContextVersion (2, 0);
+//	glutInitContextProfile (GLUT_CORE_PROFILE );
+//glutInitContextFlags(GLUT_DEBUG);
 	glutInitDisplayMode(GLUT_SINGLE);
-    glutInitContextVersion(2,0);  
 	glutInitWindowSize(500,500);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("OpenGL Version Test");
@@ -29,8 +31,6 @@ int  main ()
 
     return 1;
 }
-
-
 
 //glGetString​(GL_VENDOR​);// vendor name
 //glGetString​(GL_VERSION​);
