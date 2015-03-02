@@ -64,6 +64,9 @@ keyStates[key] = false; // Set the state of the current key to not pressed
   
 int main (int argc, char **argv) {  
 glutInit(&argc, argv); // Initialize GLUT  
+//glutInitContextVersion (2, 0);
+//	glutInitContextProfile (GLUT_CORE_PROFILE );
+//glutInitContextFlags(GLUT_DEBUG);
 glutInitDisplayMode (GLUT_DOUBLE); // Set up a basic display buffer (now double buffered)  
 glutInitWindowSize (500, 500); // Set the width and height of the window  
 glutInitWindowPosition (100, 100); // Set the position of the window  

@@ -56,6 +56,9 @@ glMatrixMode (GL_MODELVIEW);
 
 int main (int argc, char **argv) {
 glutInit (&argc, argv);
+//glutInitContextVersion (2, 0);
+//	glutInitContextProfile (GLUT_CORE_PROFILE );
+//glutInitContextFlags(GLUT_DEBUG);
 glutInitDisplayMode (GLUT_DOUBLE);
 glutInitWindowSize (500, 500);
 glutInitWindowPosition (100, 100);

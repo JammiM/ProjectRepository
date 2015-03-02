@@ -8,6 +8,9 @@ glFlush(); // Flush the OpenGL buffers to the window
   
 int main (int argc, char **argv) {  
 glutInit(&argc, argv); // Initialize GLUT  
+//glutInitContextVersion (2, 0);
+//	glutInitContextProfile (GLUT_CORE_PROFILE );
+//glutInitContextFlags(GLUT_DEBUG);
 glutInitDisplayMode (GLUT_SINGLE); // Set up a basic display buffer (only single buffered for now)  
 glutInitWindowSize (500, 500); // Set the width and height of the window  
 glutInitWindowPosition (100, 100); // Set the position of the window  
