@@ -45,11 +45,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\t00137314\Desktop\drivers\glew-1.11.0\include;C:\Users\t00137314\Desktop\drivers\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\glew-1.12.0\include\GL;C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\freeglut\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\t00137314\Desktop\drivers\glew-1.11.0\lib\Release\Win32;C:\Users\t00137314\Desktop\drivers\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\glew-1.12.0\include\GL;C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -60,7 +60,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\t00137314\Desktop\drivers\glew-1.11.0\include;C:\Users\t00137314\Desktop\drivers\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\glew-1.12.0\include\GL;C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\freeglut\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
