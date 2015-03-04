@@ -33,7 +33,7 @@ function initialize() {
     color: 0xff0000,
       }));
 
-	cube.position.y = 150;
+	cube.position.y = 50;
 
 	//Add the cube to the scene
 	scene.addObject( cube );
