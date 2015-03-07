@@ -5,18 +5,22 @@ window.onerror = function(msg, lineno, url){
 }
 
 
-function createShader(shader, scorce){
+function createShader(source, shaderType){
+	var shader = gl.createShader(shaderType);
+	gl.shaderSource(shaderType, source);
+	gl.compileShader(shader);
 	
 	return shader
 }//createShader
 
 
-function createShaderProgram(vertexShader, fragmentShader){
-	
-	//attach vertexShader
-	//attach fragmentShader
-	
-	//linkProgram
+function createShaderProgram(vertexShaderSource, fragmentShaderSource){
+	var program = gl.createProgram();
+	var vertexShader = createShader(vertexShaderSource, gl.VERTEX_SHADER);
+	var fragmentShader = createShader(fragmentShaderSource, gl.FRAGMENT_SHADER);
+	gl.attachShader(program, vertexShader);
+	gl.attachShader(program, fragmentShader);
+	gl.linkProgram(program);
 	
 	return program
 }//createShaderProgram
