@@ -3,6 +3,26 @@
 	<meta charset="UTF-8">   
 <canvas id="c" width='400' height='400'></canvas>
 <script src="ShaderProgramCreator.js"></script>
+
+<script id="vertexShader" type="x-shader">
+	attribute vec2 vertexPostion;
+	varying vec2 textCoord;
+
+	void main() { 
+		textCoord = vertexPostion;
+		gl_Position = vec4(vertexPostion, 0, 1); 
+	}
+</script>
+<script id="fragmentShader" type="x-shader">
+	precision mediump float;
+	varying vec2 textCoord;
+
+	void main() { 
+		gl_FragColor = vec4(textCoord,0,1); 
+	}
+</script>
+
+
 <script>
 window.onerror = function(msg, lineno, url){
 	alert(url + "\n" + "Line number " + lineno + "\n" + msg);
@@ -12,20 +32,19 @@ window.onerror = function(msg, lineno, url){
 		var gl = c.getContext('experimental-webgl');
 		var vertexPosBuffer = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosBuffer);
-		var vertices = [-0.5, -0.5, 0.5, -0.5, 0, 0.5];
+		var vertices = [-1, -1, 1, -1, -1, 1, 1, 1];
 		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 	
-		var vs = 'attribute vec2 pos;' +
-				 'void main() { gl_Position = vec4(pos, 0, 1); }';
-		var fs = 'precision mediump float;' +
-				 'void main() { gl_FragColor = vec4(0,0.8,0,1); }';
-	
+
+var vs = document.getElementById('vertexShader').textContent;
+var fs = document.getElementById('fragmentShader').textContent;
+
 	var program = createProgram(vs,fs);
 	gl.useProgram(program);
-	program.vertexPosAttrib = gl.getAttribLocation(program, 'pos');
+	program.vertexPosAttrib = gl.getAttribLocation(program, 'vertexPostion');
 	gl.enableVertexAttribArray(program.vertexPosAttrib);
 	gl.vertexAttribPointer(program.vertexPosAttrib, 2, gl.FLOAT, false, 0,0);
-	gl.drawArrays(gl.TRIANGLES, 0, 3);
+	gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 	
 		
 </script>
