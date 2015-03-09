@@ -3,7 +3,7 @@ window.onerror = function (msg, lineno, url) {
 	alert("Url: \n" + lineno + "\n\n" + "Line number: " + url + "\n\nMessage: \n" + msg);
 }
 
-function createShader(source, shaderType){
+function createShader(source, shaderType) {
 	var shader = gl.createShader(shaderType);
 	gl.shaderSource(shader, source);
 	gl.compileShader(shader);
@@ -15,7 +15,7 @@ function createShader(source, shaderType){
 }//createShader
 
 
-function createProgram(vertexShaderSource, fragmentShaderSource){
+function createProgram(vertexShaderSource, fragmentShaderSource) {
 	var program = gl.createProgram();
 	var vertexShader = createShader(vertexShaderSource, gl.VERTEX_SHADER);
 	var fragmentShader = createShader(fragmentShaderSource, gl.FRAGMENT_SHADER);
@@ -29,7 +29,7 @@ function createProgram(vertexShaderSource, fragmentShaderSource){
 	return program;
 }//createProgram
 
-function ScreenQuad(){
+function ScreenQuad() {
 		var vertexPosBuffer = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosBuffer);
 		var vertices = [-1, -1, 1, -1, -1, 1, 1, 1];
@@ -40,6 +40,43 @@ function ScreenQuad(){
 		return vertexPosBuffer;
 }//ScreenQuad
 
+
+function linkProgram() {
+    var vshader = createShader(program.vshaderSource, gl.VERTEX_SHADER);
+    var fshader = createShader(program.fshaderSource, gl.FRAGMENT_SHADER);
+	gl.attachShader(program, vshader);
+	gl.attachShader(program, fshader);
+	gl.linkProgram(program);
+    	if(!gl.getProgramParameter(program, gl.LINK_STATUS)){
+		throw gl.getProgramInfoLog(program);
+	}
+}//linkProgram
+
+
+    
+function loadFile(file,callback, noCache) {
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() { 
+        if(request.readyState == 1) {
+            request.send();
+		} else if (request.readyState == 4) {
+			if (request.status == 200) {
+				callback(request.responseText);
+			} else if (request.status == 404) {
+				throw 'File "' + file + '" does not exist.';
+			} else {
+				throw 'XHR error ' + request.status + '.';
+			}
+		}
+	};
+	var url = file;
+	if (noCache) {
+		url += '?' + (new Date()).getTime();
+	}
+	request.open('GET', url, true);
+}//loadFile    
+
+
 function loadProgram(vs, fs, callBack) {
    var program = createProgram();
     function vshaderLoaded(str) {
@@ -49,20 +86,23 @@ function loadProgram(vs, fs, callBack) {
             callBack(program);
         }
     }
-}//loadProgram
-
-function fshaderLoaded(str) {
+    function fshaderLoaded(str) {
         program.fshaderSource = str;
         if(!program.vshaderSource) {
             linkProgram(program);
             callBack(program);
         }
+}//fshaderLoaded
+    
+    loadFile(vs,vshaderSource, true);
+    loadFile(str,fshaderSource, true);
 
-}//vshaderLoaded
+}//loadProgram
+
+
     
 
-loadFile(vs,vshaderSource);
-loadFile(str,fshaderSource);
-    
-//function loadFile() {}    
+
+
+
     

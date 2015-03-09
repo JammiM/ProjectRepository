@@ -7,11 +7,7 @@
     var c = document.getElementById('c');
     var gl = c.getContext('experimental-webgl');
     var vertexPosBuffer = ScreenQuad();
-  //  var vs = document.getElementById('vertexShader').textContent;
-//    var fs = document.getElementById('fragmentShader').textContent;
-    
-    function InitProgram(praogram){
-	//var program = createProgram(vs,fs);
+    function InitProgram(program){
 	gl.useProgram(program);
 	program.vertexPosAttrib = gl.getAttribLocation(program, 'vertexPostion');
 	program.offSetUniform = gl.getUniformLocation(program, 'offSet');
@@ -22,8 +18,7 @@
         
     }
     
-    
-    loadProgram('vertexShader.txt','fragmentShader.txt',InitProgram);
+    loadProgram('vertexShader.txt','fragmentShader.txt', InitProgram);
     
     
 </script>
