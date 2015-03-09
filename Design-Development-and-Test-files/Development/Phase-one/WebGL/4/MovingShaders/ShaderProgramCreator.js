@@ -1,5 +1,5 @@
 //This is a simple alert dialog displaying the error and line number.
-window.onerror = function(msg, lineno, url){
+window.onerror = function (msg, lineno, url) {
 	alert("Url: \n" + lineno + "\n\n" + "Line number: " + url + "\n\nMessage: \n" + msg);
 }
 
