@@ -36,6 +36,8 @@ function ScreenQuad(){
 		gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosBuffer);
 		var vertices = [-1, -1, 1, -1, -1, 1, 1, 1];
 		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+		vertexPosBuffer.itemSize = 2;
+		vertexPosBuffer.numItems = 4;
 
 		return vertexPosBuffer;
 }//ScreenQuad
