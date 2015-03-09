@@ -24,10 +24,9 @@
 
 
 <script>
-window.onerror = function(msg, lineno, url){
-	alert(url + "\n" + "Line number " + lineno + "\n" + msg);
-}
-
+//window.onerror = function(msg, lineno, url){
+//	alert(url + "\n" + "Line number " + lineno + "\n" + msg);
+//}
 		var c = document.getElementById('c');
 		var gl = c.getContext('experimental-webgl');
 		var vertexPosBuffer = ScreenQuad();
@@ -36,26 +35,32 @@ window.onerror = function(msg, lineno, url){
 		var vertices = [-1, -1, 1, -1, -1, 1, 1, 1];
 		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 	
-var vs = document.getElementById('vertexShader').textContent;
-var fs = document.getElementById('fragmentShader').textContent;
+		var vs = document.getElementById('vertexShader').textContent;
+		var fs = document.getElementById('fragmentShader').textContent;
 
-	var program = createProgram(vs,fs);
-	gl.useProgram(program);
-	program.vertexPosAttrib = gl.getAttribLocation(program, 'vertexPostion');
-
-
-	program.offSetUniform = gl.getUniformLocation(program, 'offSet');
-
-
-
-	gl.enableVertexAttribArray(program.vertexPosAttrib);
-	gl.vertexAttribPointer(program.vertexPosAttrib, 2, gl.FLOAT, false, 0,0);
+		var program = createProgram(vs,fs);
+		gl.useProgram(program);
+		program.vertexPosAttrib = gl.getAttribLocation(program, 'vertexPostion');
+		program.samplerUniform = gl.getUniformLocation(program, 'sampler');
+		gl.enableVertexAttribArray(program.vertexPosArray);
+		gl.vertexAttribPointer(program.vertexPosAttrib, vertexPosBuffer.numItems, gl.FLOAT, false, 0,0);
 
 
-	gl.uniform2f(program.offSetUniform, offSet[0], offSet[1]);
+		var texture = gl.createTexture();
+		var img = new Image();
+		img.onLoad = function(){
+			gl.activeTexture(gl.TEXTURE0);
+			gl.bindTexture(gl.TEXTURE_2d, texture);
+			gl.pixelStorei(gl.UNPACK_FLIP_y_wEBGL, true);
+			gl.textureImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+			gl.textParameteri(gl.Texture_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+			gl.textParameteri(gl.Texture_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+			gl.uniformli(program.samplerUniform, 0);
+			gl.drawArrays(gl.TRIANGLE_STRIP, vertexPosBuffer.numItems);
+		}
 
-	gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-	
-		
+
+
+		img.src = "opera.png";
 </script>
 </html>
