@@ -1,6 +1,6 @@
 //This is a simple alert dialog displaying the error and line number.
 window.onerror = function(msg, lineno, url){
-	alert(url + "\n" + "Line number " + lineno + "\n" + msg);
+	alert("Url: \n" + lineno + "\n\n" + "Line number: " + url + "\n\nMessage: \n" + msg);
 }
 
 function createShader(source, shaderType){
@@ -38,6 +38,6 @@ function ScreenQuad(){
 		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 		vertexPosBuffer.itemSize = 2;
 		vertexPosBuffer.numItems = 4;
-		
+
 		return vertexPosBuffer;
 }//ScreenQuad
