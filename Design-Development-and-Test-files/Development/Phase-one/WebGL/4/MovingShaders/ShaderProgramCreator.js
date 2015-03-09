@@ -29,8 +29,6 @@ function createProgram(vertexShaderSource, fragmentShaderSource){
 	return program;
 }//createProgram
 
-
-
 function ScreenQuad(){
 		var vertexPosBuffer = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, vertexPosBuffer);
@@ -41,3 +39,30 @@ function ScreenQuad(){
 
 		return vertexPosBuffer;
 }//ScreenQuad
+
+function loadProgram(vs, fs, callBack) {
+   var program = createProgram();
+    function vshaderLoaded(str) {
+        program.vshaderSource = str;
+        if(!program.fshaderSource) {
+            linkProgram(program);
+            callBack(program);
+        }
+    }
+}//loadProgram
+
+function fshaderLoaded(str) {
+        program.fshaderSource = str;
+        if(!program.vshaderSource) {
+            linkProgram(program);
+            callBack(program);
+        }
+
+}//vshaderLoaded
+    
+
+loadFile(vs,vshaderSource);
+loadFile(str,fshaderSource);
+    
+//function loadFile() {}    
+    
