@@ -6,18 +6,18 @@
 <script>
     var c = document.getElementById('c');
     var gl = c.getContext('experimental-webgl');
+    var offset = [1, 1];
     var vertexPosBuffer = ScreenQuad();
-    function InitProgram(program){
-	gl.useProgram(program);
-	program.vertexPosAttrib = gl.getAttribLocation(program, 'vertexPostion');
-	program.offSetUniform = gl.getUniformLocation(program, 'offSet');
-	gl.enableVertexAttribArray(program.vertexPosAttrib);
-	gl.vertexAttribPointer(program.vertexPosAttrib, vertexPosBuffer.itemSize, gl.FLOAT, false, 0,0);
-	gl.uniform2f(program.offSetUniform, offSet[0], offSet[1]);
-	gl.drawArrays(gl.TRIANGLE_STRIP,vertexPosBuffer.numItems);
-        
-    }
     
+    function InitProgram(program){
+        gl.useProgram(program);
+        program.vertexPosAttrib = gl.getAttribLocation(program, 'vertexPostion');
+        program.offSetUniform = gl.getUniformLocation(program, 'offSet');
+        gl.enableVertexAttribArray(program.vertexPosAttrib);
+        gl.vertexAttribPointer(program.vertexPosAttrib, vertexPosBuffer.itemSize, gl.FLOAT, false, 0,0);
+        gl.uniform2f(program.offSetUniform, offSet[0], offSet[1]);
+        gl.drawArrays(gl.TRIANGLE_STRIP,vertexPosBuffer.numItems);
+    }
     loadProgram('vertexShader.txt','fragmentShader.txt', InitProgram);
     
     

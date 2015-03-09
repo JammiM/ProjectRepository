@@ -7,7 +7,7 @@ function createShader(source, shaderType) {
 	var shader = gl.createShader(shaderType);
 	gl.shaderSource(shader, source);
 	gl.compileShader(shader);
-	if(!gl.getShaderParameter(shader,gl.COMPILE_STATUS)){
+	if (!gl.getShaderParameter(shader,gl.COMPILE_STATUS)) {
 		throw gl.getShaderInfoLog(shader);
 	}
 
@@ -41,7 +41,7 @@ function ScreenQuad() {
 }//ScreenQuad
 
 
-function linkProgram() {
+function linkProgram(program) {
     var vshader = createShader(program.vshaderSource, gl.VERTEX_SHADER);
     var fshader = createShader(program.fshaderSource, gl.FRAGMENT_SHADER);
 	gl.attachShader(program, vshader);
@@ -54,9 +54,9 @@ function linkProgram() {
 
 
     
-function loadFile(file,callback, noCache) {
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function() { 
+function loadFile(file, callback, noCache) {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
         if(request.readyState == 1) {
             request.send();
 		} else if (request.readyState == 4) {
@@ -67,7 +67,7 @@ function loadFile(file,callback, noCache) {
 			} else {
 				throw 'XHR error ' + request.status + '.';
 			}
-		}
+		}  
 	};
 	var url = file;
 	if (noCache) {
@@ -98,11 +98,3 @@ function loadProgram(vs, fs, callBack) {
     loadFile(str,fshaderSource, true);
 
 }//loadProgram
-
-
-    
-
-
-
-
-    
