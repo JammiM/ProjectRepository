@@ -7,13 +7,12 @@ function createShader(source, shaderType) {
 	var shader = gl.createShader(shaderType);
 	gl.shaderSource(shader, source);
 	gl.compileShader(shader);
-	if (!gl.getShaderParameter(shader,gl.COMPILE_STATUS)) {
+    
+	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
 		throw gl.getShaderInfoLog(shader);
 	}
-
 	return shader;
 }//createShader
-
 
 function createProgram(vertexShaderSource, fragmentShaderSource) {
 	var program = gl.createProgram();
@@ -22,12 +21,14 @@ function createProgram(vertexShaderSource, fragmentShaderSource) {
 	gl.attachShader(program, vertexShader);
 	gl.attachShader(program, fragmentShader);
 	gl.linkProgram(program);
+    
 	if(!gl.getProgramParameter(program, gl.LINK_STATUS)){
 		throw gl.getProgramInfoLog(program);
 	}
 
 	return program;
 }//createProgram
+
 
 function ScreenQuad() {
 		var vertexPosBuffer = gl.createBuffer();
@@ -63,7 +64,7 @@ function loadFile(file, callback, noCache) {
 			if (request.status == 200) {
 				callback(request.responseText);
 			} else if (request.status == 404) {
-				throw 'File "' + file + '" does not exist.';
+				throw 'File ' + file + ' does not exist.';
 			} else {
 				throw 'XHR error ' + request.status + '.';
 			}
@@ -77,24 +78,26 @@ function loadFile(file, callback, noCache) {
 }//loadFile    
 
 
-function loadProgram(vs, fs, callBack) {
-   var program = createProgram();
-    function vshaderLoaded(str) {
-        program.vshaderSource = str;
-        if(!program.fshaderSource) {
-            linkProgram(program);
-            callBack(program);
-        }
-    }
-    function fshaderLoaded(str) {
-        program.fshaderSource = str;
-        if(!program.vshaderSource) {
-            linkProgram(program);
-            callBack(program);
-        }
-}//fshaderLoaded
-    
-    loadFile(vs,vshaderSource, true);
-    loadFile(str,fshaderSource, true);
 
+function loadProgram(vs, fs, callback) {
+	var program = gl.createProgram();
+    
+	function vshaderLoaded(str) {
+		program.vshaderSource = str;
+		if (program.fshaderSource) {
+			linkProgram(program);
+			callback(program);
+		}
+	}//vshaderLoaded
+    
+	function fshaderLoaded(str) {
+		program.fshaderSource = str;
+		if (program.vshaderSource) {
+			linkProgram(program);
+			callback(program);
+		}
+	}//fshaderLoaded
+    
+	loadFile(vs, vshaderLoaded, true);
+	loadFile(fs, fshaderLoaded, true);
 }//loadProgram
