@@ -11,10 +11,17 @@ int main(int argc, char** argv) {
 	glutInitContextProfile(GLUT_FORWARD_COMPATIBLE);
 	glutCreateWindow(argv[0]);
 	
-	if (glew)
-}//main
-
-
+	if (glewInit()) {
+		cerr << "Can't start GLEW" << endl;
+		exit(EXIT_FAILURE);
+	}//if	
+	
+	BuildGeometry();
+	
+	glutDisplayFunc(display);
+	glutMainLoop();
+}
+//main
 
 void BuildGeometry() {
 	GLuint vertexArrayBuffer;
@@ -22,7 +29,6 @@ void BuildGeometry() {
 	GLunit numVertices;
 	GLunit verts;
 	GLunit colours;
-	
 	
 	glGenVertexArray(1,&vertexArrayBuffer);
 	glBindVertexArray(vertexArrayBuffer);
@@ -47,9 +53,22 @@ void BuildGeometry() {
 	//flush 
 	//glFinish(); / glFlush();
 	
-}//main
+}
+//BuildGeometry
+
+void display() {
+
+}
+//display
 
 
+
+
+
+
+
+
+//TODO FIX UP !!!
 shaderStuff() {
 	GLuint vpos;
 
