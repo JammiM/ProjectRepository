@@ -15,7 +15,7 @@ function createShader(source, shaderType){
 }//createShader
 
 
-function createProgram(vertexShaderSource, fragmentShaderSource){
+function createProgram(vertexShaderSource, fragmentShaderSource) {
 	var program = gl.createProgram();
 	var vertexShader = createShader(vertexShaderSource, gl.VERTEX_SHADER);
 	var fragmentShader = createShader(fragmentShaderSource, gl.FRAGMENT_SHADER);
