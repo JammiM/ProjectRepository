@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 	<meta charset="UTF-8"> 
-<head>
 		<style type="text/css">
 			body {
 				background-color: #000000;
@@ -22,38 +21,34 @@
 			}
 
 		</style>
-</head>
-<body>
-			<div id="info"></div>
-<script src="Three.js"></script>
+	</head>
+	<body>
+		<div id="info"></div>
+		<script src="Three.js"></script>
 		<script src="Detector.js"></script>
 		<script src="RequestAnimationFrame.js"></script>
 		<script src="Stats.js"></script>
-		<!--<div id="numOfCubes">Number of cubes.</div> --> 
-		<script>
-
-			var CUBE_SIZE = 250;
-			var INCREASEBYNUMBER = 1;
+		<script >
+			var MATERIAL_COUNT = 30;
+			var CUBE_SIZE = 300;
+			var CUBE_INCREMENT = 1;
 			var DISTANCE = 1000;
-			var MATERIAL_NUMBER = 30;
-			
 			var scene;
 			var renderer;
 			var camera;
 			var stats;
 			var cubes = [];
-			var materials =[];
+			var materials = [];
 			var cubeHolder;
+			var rotSpeed;
 			var cubeCount = 0;
 			var geometry;
-			var rotSpeed;			
 			var windowHalfX;
 			var windowHalfY;
 
+			init();
 
-			initialise();
-
-			function initialise(){
+			function init() {
 				var container = document.createElement('div');
 				document.body.appendChild(container);
 				renderer = new THREE.WebGLRenderer({
@@ -61,8 +56,6 @@
 					clearAlpha : 0
 				});
 				container.appendChild(renderer.domElement);
-
-
 				camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 20, 4000);
 				camera.position.z =3000;
 
@@ -77,29 +70,23 @@
 				renderer.setClearColorHex( 0x000000, 1 );
 
 
-
-
-
 				scene = new THREE.Scene();
 				scene.add(camera);
 
 				cubeHolder = new THREE.Object3D();
-				scene.add(cubeHolder);				
+				scene.add(cubeHolder);
 
-
-
-
+				//add lights
 				var light = new THREE.PointLight(0xffeeaa, 1);
 				light.position = new THREE.Vector3(-1000, 1000, -1000);
 				scene.add(light);
-
 
 				var light2 = new THREE.PointLight(0xFFFFFF, 1);
 				light2.position = new THREE.Vector3(1000, 1000, 1000);
 				scene.add(light2);
 
-
-				for(var i = 0; i < MATERIAL_NUMBER; i++) {
+				//init materials
+				for(var i = 0; i < MATERIAL_COUNT; i++) {
 					var material = new THREE.MeshLambertMaterial({
 						opacity : 1,
 						blending : THREE.AdditiveBlending,
@@ -109,67 +96,57 @@
 					materials.push(material)
 				}
 
-				rotSpeed = .3 / 360 * Math.PI * 2;
-
+				//init cubes
 				geometry = new THREE.CubeGeometry(CUBE_SIZE, CUBE_SIZE, CUBE_SIZE);
+				addCubes();
 
+				//add stats
 				stats = new Stats();
 				stats.domElement.style.position = 'absolute';
 				stats.domElement.style.top = '0px';
 				container.appendChild(stats.domElement);
-
-				addCubes();
-				
-				window.addEventListener('buttonPress', onButtonPress, false);
-
-				update();
+				rotSpeed = .3 / 360 * Math.PI * 2;
 
 
-			}//initialise
-			function addCubes(){
-				//init cubes
+				window.addEventListener('keydown', onKeyDown, false);
+				animate();
 
-				cubeCount += INCREASEBYNUMBER;
+			}//init
 
-				for(var j = 0; j < INCREASEBYNUMBER; j++) {
-					var cube = new THREE.Mesh(geometry,  materials[j % MATERIAL_NUMBER]);
-					
-
+			function addCubes() {
+				cubeCount += CUBE_INCREMENT;
+				for(var j = 0; j < CUBE_INCREMENT; j++) {
+					var cube = new THREE.Mesh(geometry, materials[j % MATERIAL_COUNT]);
 					cubeHolder.add(cube);
 					cubes.push(cube);
-
 					cube.position.x = Math.random() * DISTANCE - DISTANCE / 2;
 					cube.position.y = Math.random() * DISTANCE - DISTANCE / 2;
 					cube.position.z = Math.random() * DISTANCE - DISTANCE / 2;
-
-				}//loopEnd
-
-				document.getElementById("info").innerText = "WebGL Cubes. Rendering " + cubeCount + " cubes. Press spacebar to increase.";
-
+				}
+				//set info text
+				document.getElementById("info").innerText = "Rendering " + cubeCount + " cubes. Press f button.";
 			}//addCubes
-			function onButtonPress(event){
-				if(event.keyCode == '32'){
+
+			function onKeyDown(event) {
+				if(event.keyCode == '70') { //f
 					addCubes();
 				}
-				}//buttonPress
-			function update(){
-				requestAnimationFrame(update);
+			}//onKeyDown
+
+			function animate() {
+				requestAnimationFrame(animate);
 				render();
 				stats.update();
-			}
-			
-			function render(){
+			}//animate
 
-
-
-				camera.lookAt(cubeHolder.position);
-				
+			function render() {
 				for(var i = 0; i < cubeCount; i++) {
 					cubes[i].rotation.x += rotSpeed;
 				}
 				renderer.render(scene, camera);
-			}
+			}//render
 		</script>
-<canvas></canvas>
-</body>
-</html>
+
+		<canvas></canvas>
+
+</body></html>
