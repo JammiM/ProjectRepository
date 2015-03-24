@@ -17,7 +17,6 @@ gluLookAt (0, 0, -5,
        0, 0,  0,
        0, 1,  0);
 
-
 void main() {}//main
 
 void initBuffers() {
@@ -28,6 +27,17 @@ void initBuffers() {
          0.0,  1.0,  0.0,
         -1.0, -1.0,  0.0,
          1.0, -1.0,  0.0
+		 
+		 
+		 /*
+   -1.0f, -1.0f, 0.0f,
+   1.0f, -1.0f, 0.0f,
+   0.0f,  1.0f, 0.0f,
+		 
+		 
+		 
+		 
+		 */
     ];
           
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);   
@@ -36,12 +46,22 @@ void initBuffers() {
 }//initBuffers
 
  void initShaders() {
-    var fragmentShader = getShader(gl, "shader-fs");
-    var vertexShader = getShader(gl, "shader-vs");
+	 
+	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertexShader, 1, &vertexSource, NULL);
+	glCompileShader(vertexShader);
 
-    shaderProgram = gl.createProgram();
-    gl.attachShader(shaderProgram, vertexShader);
-    gl.attachShader(shaderProgram, fragmentShader);
+	
+	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
+	glCompileShader(fragmentShader);	 
+	 
+	 
+	GLuint shaderProgram = glCreateProgram();
+	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, fragmentShader);
+
+	
     gl.linkProgram(shaderProgram);
 
     if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
@@ -55,10 +75,46 @@ void initBuffers() {
     shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
     shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
   }//initShaders
-  
-  
-  
+   
 void draw() { 
-	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-	 
+	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0); 
  }//draw
+
+void vertexShader (){
+#version 120
+
+ in vec2 position;
+
+void main()
+{
+    gl_Position = vec4(position, 0.0, 1.0);
+}
+	 
+	 
+	 
+	 
+	 
+	 
+ }
+ 
+ 
+ 
+void fragmentShader (){
+	 
+	 
+#version 120
+	 
+out vec4 outColor;
+
+void main()
+{
+    outColor = vec4(1.0, 1.0, 1.0, 1.0);
+}	 
+	 
+	 
+	 
+	 
+	 
+ }
+ 
+ 

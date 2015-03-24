@@ -1,10 +1,16 @@
-  var squareVertexPositionBuffer;
-  var gl;
-  var mvMatrix = mat4.create();
-  var pMatrix = mat4.create();
-    
-    
-    
+GLuint VertexArrayID;
+glGenVertexArrays(1, &VertexArrayID);
+glBindVertexArray(VertexArrayID); 
+
+static const GLfloat g_vertex_buffer_data[] = {
+   -1.0f, -1.0f, 0.0f,
+   1.0f, -1.0f, 0.0f,
+   0.0f,  1.0f, 0.0f,
+};
+
+ var squareVertexPositionBuffer;
+
+        
   function initGL(canvas) {
     try {
       gl = canvas.getContext("experimental-webgl");
@@ -124,17 +130,12 @@ function webGLStart() {
     drawScene();
   }//webGLStart
     
-    
-</script>
 
     
     
     
     
-    
 
-
-<body onload="webGLStart();">
     
 <script id="shader-fs" type="x-shader/x-fragment">
   precision mediump float;
@@ -143,6 +144,18 @@ function webGLStart() {
     gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
   }
 </script>
+
+
+
+ FRAGMENT_SHADER = shaders.compileShader("""#version 120
+        void main() {
+            gl_FragColor = vec4( 0, 1, 0, 1 );
+        }""", GL_FRAGMENT_SHADER)
+
+
+
+
+
 
 <script id="shader-vs" type="x-shader/x-vertex">
   attribute vec3 aVertexPosition;
