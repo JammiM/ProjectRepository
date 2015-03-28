@@ -61,8 +61,7 @@ void initBuffers() {
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragmentShader);
 
-	
-    gl.linkProgram(shaderProgram);
+	glLinkProgram(shaderProgram);
 
     if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
       alert("Could not initialise shaders");

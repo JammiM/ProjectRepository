@@ -11,7 +11,7 @@ static const GLfloat g_vertex_buffer_data[] = {
  var squareVertexPositionBuffer;
 
         
-  function initGL(canvas) {
+void initGL(canvas) {
     try {
       gl = canvas.getContext("experimental-webgl");
       gl.viewportWidth = canvas.width;
@@ -23,7 +23,7 @@ static const GLfloat g_vertex_buffer_data[] = {
     }
   }
     
-  function initBuffers() {
+void initBuffers() {
     squareVertexPositionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
     vertices = [

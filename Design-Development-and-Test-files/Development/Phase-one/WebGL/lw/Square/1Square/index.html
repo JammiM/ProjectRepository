@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <meta charset='utf-8'/>
-<script src="glMatrix-0.9.5.min.js"></script>
-    
+<meta charset='utf-8'/>
+<script src="glMatrix-0.9.5.min.js"></script>    
 <script>
 
   var squareVertexPositionBuffer;
   var gl;
   var mvMatrix = mat4.create();
   var pMatrix = mat4.create();
-    
-    
-    
+
   function initGL(canvas) {
     try {
       gl = canvas.getContext("experimental-webgl");
