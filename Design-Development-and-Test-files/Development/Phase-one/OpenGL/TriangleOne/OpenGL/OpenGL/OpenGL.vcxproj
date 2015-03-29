@@ -77,11 +77,6 @@
   <ItemGroup>
     <ClInclude Include="LOpenGL.h" />
     <ClInclude Include="LUtil.h" />
-    <ClInclude Include="shader_utils.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="f.glsl" />
-    <None Include="v.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

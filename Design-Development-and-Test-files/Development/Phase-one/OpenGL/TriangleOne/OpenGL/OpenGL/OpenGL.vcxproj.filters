@@ -26,12 +26,5 @@
     <ClInclude Include="LUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="shader_utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="v.glsl" />
-    <None Include="f.glsl" />
   </ItemGroup>
 </Project>
