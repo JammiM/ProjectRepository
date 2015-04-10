@@ -7,6 +7,19 @@
 	window.onload = main;
 
 	function main() {
+	  var canvas = document.getElementById("canvas");
+	  var gl = getWebGLContext(canvas);
+	  if (!gl) {
+		return;
+	  }
+	  
+	  
+//create vs + fs
+//create shader
+//attach + link
+
+	  
+	  
 	
 
 	for (var f = 0; f < 10; ++f) {
@@ -15,6 +28,7 @@
   }//loop
   
   
+}//main
   
   
   function createSquare(gl, x, y, width, height) {
@@ -26,23 +40,6 @@ function generateRandomNumber(number) {
   return Math.random() * number);
 }
 
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	}//main
 	</script>
 	<script id="vshader" type="x-shader/x-vertex">
 	</script>
