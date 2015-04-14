@@ -7,11 +7,35 @@
 	window.onload = main;
 
 	function main() {
+	
+	  var sizeOfSquare=20;
 	  var canvas = document.getElementById("canvas");
-	  var gl = getWebGLContext(canvas);
+	  var gl = getWebGLContext(canvas)
 	  if (!gl) {
 		return;
 	  }
+	  
+	  
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  
 	  
 //create vs + fs
@@ -23,13 +47,18 @@
 	
 
 	for (var f = 0; f < 10; ++f) {
+	
     createSquare(gl, generateRandomNumber(20), generateRandomNumber(20), 20, 20);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
+  
   }//loop
   
   
 }//main
   
+  
+  
+
   
   function createSquare(gl, x, y, width, height) {
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([]), gl.STATIC_DRAW);
@@ -39,6 +68,8 @@
 function generateRandomNumber(number) {
   return Math.random() * number);
 }
+
+
 
 	</script>
 	<script id="vshader" type="x-shader/x-vertex">
