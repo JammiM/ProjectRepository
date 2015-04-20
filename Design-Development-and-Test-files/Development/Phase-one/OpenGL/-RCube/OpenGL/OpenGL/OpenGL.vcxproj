@@ -46,7 +46,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\James\Desktop\tri_2\drivers\freeglut\include\GL;C:\Users\James\Desktop\tri_2\drivers\glew-1.11.0\include\GL;C:\Users\James\Desktop\tri_2\drivers\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\James\Desktop\tri_2\drivers\freeglut\include\GL;C:\Users\James\Desktop\tri_2\drivers\glm;$(ProjectDir)..\..\drivers\glew-1.11.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
