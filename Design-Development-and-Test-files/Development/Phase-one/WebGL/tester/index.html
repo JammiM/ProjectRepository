@@ -3,10 +3,8 @@
 	<script src="glMatrix-0.9.5.min.js"></script>
 
 <script>
-
   var triangleVertexPositionBuffer;
   var squareVertexPositionBuffer;  
-
 
   function initBuffers() {
     triangleVertexPositionBuffer = gl.createBuffer();//Creates a buffer
@@ -41,8 +39,10 @@
 
   }//initBuffers
 
+ function initGL(){
+ }
 
-
+ function initShaders(){}
 
   function drawScene() {
     gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
@@ -55,8 +55,6 @@
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
 }//drawScene
-
-
 
   function webGLStart() {
     var canvas = document.getElementById("lesson01-canvas");
