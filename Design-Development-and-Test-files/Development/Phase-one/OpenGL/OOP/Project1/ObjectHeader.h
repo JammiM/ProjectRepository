@@ -10,7 +10,9 @@ using namespace std;
 class Object {
 private:
 	string id;
+	//vec3 Position;
 	static int numOfObjects;
+	static Object arrayOfObjects[];
 public:
 	string getId() {return id;}
 	void setId(string newId) {id = newId;}

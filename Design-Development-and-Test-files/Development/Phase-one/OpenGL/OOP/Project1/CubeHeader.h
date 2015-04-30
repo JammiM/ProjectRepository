@@ -6,9 +6,20 @@ using namespace std;
 #ifndef CUBEHEADER_H
 #define CUBEHEADER_H
 
-class Cube {
+class Cube : Drawable{
+private:
 	string id;
+	GLint faces[]:
+	GLint 
+	
+public:
 
+    void getClass() { cout << " is an cube object." << endl; }
+	void toString() { }
+	void Draw()
+	
+	
+	
 
 };
 
