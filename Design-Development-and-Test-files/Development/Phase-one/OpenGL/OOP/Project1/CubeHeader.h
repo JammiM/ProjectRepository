@@ -16,7 +16,10 @@ public:
 
     void getClass() { cout << " is an cube object." << endl; }
 	void toString() { }
-	void Draw()
+	void Draw(){
+		
+	//example Cube.Draw(GL_TRIANGLES, 0, 3 );
+	}
 	
 	
 	

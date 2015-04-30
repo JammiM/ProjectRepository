@@ -25,23 +25,24 @@ public:
 	~Drawable();
 
 	//glDrawArrays()
-	void Draw(GLenum mode, GLint first, GLsizei count) {
+	virtual void Draw(GLenum mode, GLint first, GLsizei count) {
 		
 		//Cube.Draw(GL_TRIANGLES, 0, 3 );
-			GLenum mode = mode;
-			GLint first = first;
-			GLsizei count =  count;
+			this -> mode = mode;
+			this -> first = first;
+			this -> count =  count;
 		
 	}//Draw
 	
-
+/*
     //glDrawElements()
-	void Draw(GLenum mode, GLsizei count,GLenum type, const GLvoid * indices) {
-		
-		
-		
+	virtual void Draw(GLenum mode, GLsizei count,GLenum type, const GLvoid * indices) {
+		this -> mode = mode; 
+		this -> count = count;
+		this -> type = type;
+		this -> GLvoid * indices
 	}//Draw
-		
+	*/	
 			
 	void toString();
 };
