@@ -39,17 +39,19 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>$(Configuration)\Dump\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\glew-1.12.0\include\GL;C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\freeglut\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\drivers\glew-1.12.0\include\GL;$(ProjectDir)..\..\..\drivers\freeglut\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\glew-1.12.0\include\GL;C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\drivers\glew-1.12.0\include\GL;$(ProjectDir)..\..\..\drivers\drivers\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
