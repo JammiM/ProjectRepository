@@ -1,8 +1,3 @@
-#include "ObjectHeader.h"
-/*
-Object::Object(string id){
-	this -> id;
-	//numOfObjects++;
-}
+#include "Object.h"
 
-*/
+Object::Object(int g){}

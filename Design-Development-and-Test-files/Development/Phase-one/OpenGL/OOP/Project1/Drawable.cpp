@@ -1,5 +1,5 @@
 #include "DrawableHeader.h"
-#include "ObjectHeader.h"
+#include "Object.h"
 
-Drawable::Drawable(string id, GLint vertices): Object(id) {
+Drawable::Drawable(int id, GLint vertices): Object(id) {
 	}

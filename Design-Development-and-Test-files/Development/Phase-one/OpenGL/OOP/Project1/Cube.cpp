@@ -1,7 +1,7 @@
 #include "CubeHeader.h"
 
 
-Cube::Cube(Vector3 position, ): Drawable(id){
+//Cube::Cube(Vector3 position, ): Drawable(id){
 	
-}
+//}
 

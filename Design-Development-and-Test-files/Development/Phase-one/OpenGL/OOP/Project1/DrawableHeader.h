@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <freeglut.h>
-#include "ObjectHeader.h"
+#include "Object.h"
 
 using namespace std;
 
@@ -10,28 +10,19 @@ using namespace std;
 
 class Drawable : Object {
 private:
-	string id;
-	GLint verticesArray[];
-	GLint elementArrary[]; 
-	
+	int id;
 public:
-	string getId() {return id;}
-	GLint getVertices() {return vertices[0];}
+	int getId() {return id;}
     void getClass() { cout << " is an drawable object." << endl; }
 	
 
 	Drawable();
-	Drawable(string, GLint);
+	Drawable(int, GLint);
 	~Drawable();
 
 	//glDrawArrays()
 	virtual void Draw(GLenum mode, GLint first, GLsizei count) {
-		
-		//Cube.Draw(GL_TRIANGLES, 0, 3 );
-			this -> mode = mode;
-			this -> first = first;
-			this -> count =  count;
-		
+		glDrawArrays(mode,first,count);
 	}//Draw
 	
 /*

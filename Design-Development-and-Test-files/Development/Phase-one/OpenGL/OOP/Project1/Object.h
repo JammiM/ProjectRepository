@@ -9,14 +9,13 @@ using namespace std;
 
 class Object {
 private:
-	string id;
-	//vec3 Position;
+	int id;
 	static int numOfObjects;
 	static Object arrayOfObjects[];
 public:
-	string getId() {return id;}
-	void setId(string newId) {id = newId;}
-	Object(string id);
+	int getId() {return id;}
+	void setId(int newId) {id = newId;}
+	Object(int id);
 	Object();
 	//~Object();
 	virtual void getClass() { cout << " is an Object." << endl; }
