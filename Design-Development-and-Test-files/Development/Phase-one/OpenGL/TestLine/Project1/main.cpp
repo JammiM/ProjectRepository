@@ -5,52 +5,30 @@
 #endif
 
 #include <iostream>
-#include <glew.h>
-#include <freeglut.h>
 #include <string>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "WindowManager.h"
+
+
+
 using namespace std;
 
 string v_shaderSource,f_shaderSource;
-
-
-void intinaliseGlut() {
-	glutInitContextVersion(2,1);
-	glutCreateWindow("Test");
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-    glutInitWindowSize(900,500);
-	glutInitWindowPosition(8000,10);
-	//glutIdleFunc ();
-    //glutDisplayFunc();
-    //glutReshapeFunc();
-    //glutKeyboardFunc();
-}//intinaliseGlut
-
-
+WindowManager _windowManager;
 
 int main(int argc, char* argv[]) {
+
+	_windowManager.initialiseWindow();
+	_windowManager.run();
 	
-	glutInit(&argc,argv);
-	intinaliseGlut();
-	//glutMainLoop();
-	
-
-
-	GLenum err = glewInit();
-	if(GLEW_OK != err){
-		cout <<"glewInit failed, aborting."<< endl;exit (1);
-	}
-
-
-
-
-
 
 	return 0;
 }
+
+
 
 //Creates a single sub shader.
 GLint createSubShader(GLenum shaderType, string shaderSource) {
@@ -80,6 +58,8 @@ GLint createSubShader(GLenum shaderType, string shaderSource) {
 	}
 }//createSubShader
 
+
+/*
 
 void addAttributesToShaderProgram(GLint _shaderProgram) {
 	
@@ -143,3 +123,4 @@ void initScene() {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
        
 	   }
+*/
