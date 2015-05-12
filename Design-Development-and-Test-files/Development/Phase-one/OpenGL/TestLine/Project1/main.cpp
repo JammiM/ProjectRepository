@@ -1,3 +1,9 @@
+#ifdef _WIN32
+#include <windows.h>
+#define WIN32_LEAN_AND_MEAN
+#define WIN32_EXTRA_LEAN
+#endif
+
 #include <iostream>
 #include <glew.h>
 #include <freeglut.h>
