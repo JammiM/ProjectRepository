@@ -1,26 +1,40 @@
 #include "shaderManager.h"
 
 
-shaderManager::shaderManager(void)
+shaderManager::shaderManager()//(string _name)
 {
+//	if(_name.size = NULL) {
+//		glCreateProgram(
+//	} else
+//	{
+//		 exit(EXIT_FAILURE);
+//	}
 }
 
 shaderManager::~shaderManager(void)
 {
-	/*
-	glDeleteProgram();
-	glDeleteShader();
-	*/
+	
+	//glDeleteProgram(GLint n);
+	//glDeleteShader();
+	//*/
 }
 
-//shaderManager::createShader(){
+GLint shaderManager::createShader(GLenum _type, string _source){
 	//type and source.
-	//glCreateShader();	
+	GLint shader;
+	shader = glCreateShader(_type);
+	//glShaderSource(
 	//glShaderSource();
 	//glIsShader();
+
+	glCompileShader(shader);
 //	void glCompileShader(GLuint shader);
 	//error handling
-//}
+
+
+
+	return shader;
+}
 
 
 //shaderManager::initShaderProgram() {//}GLuint program, GLuint  	shader){
@@ -42,22 +56,6 @@ shaderManager::~shaderManager(void)
 	*/
 	
 //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

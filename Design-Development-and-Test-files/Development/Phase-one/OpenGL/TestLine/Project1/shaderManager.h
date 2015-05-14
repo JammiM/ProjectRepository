@@ -10,15 +10,17 @@ using namespace std;
 class shaderManager
 {
 public:
-	shaderManager(void);
-	~shaderManager(void);
-	void createShader();
+	shaderManager();//string);
+	~shaderManager();
+	GLint createShader(GLenum, string);
 	void loadShader();
-	void initShaderProgram();
+	void initShaderProgram(GLint,GLint);
 	GLuint getShaderId();
 	
 private:
     GLuint shaderId;
+	GLint programId;
+	GLboolean isLinked;
     GLuint vertexShader;
     GLuint fragmentShader;
     const GLchar* vertexShaderSource;
