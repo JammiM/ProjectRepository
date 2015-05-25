@@ -1,4 +1,5 @@
 #pragma once
+
 #include <glew.h>
 #include <freeglut.h>
 #include <iostream>
@@ -14,6 +15,6 @@ public:
 
 	void run();
 	void initialiseWindow();
-
-private:
+	void render();
+	void setupGlew();
 };
