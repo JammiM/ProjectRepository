@@ -10,7 +10,7 @@ using namespace std;
 class shaderManager
 {
 public:
-	shaderManager();//string);
+	shaderManager();
 	~shaderManager();
 	GLint createShader(GLenum, string);
 	void loadShader();

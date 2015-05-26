@@ -9,9 +9,18 @@ using namespace std;
 
 class shader
 {
-public:
-
-
 private:
+	GLint shaderId;
+	const GLchar* shaderSource;
+	enum shaderType 
+	{
+		vertShader, fragShader, shaderProgram
+	};
+public:
+	shader();
+	shader(GLint, GLchar);
+	~shader();
+	GLint createShader(GLint _shader, GLchar* shaderSource);
+	GLint createShaderProgram(GLint _vertexShader, GLint _fragmentShader);
 };
 #endif
