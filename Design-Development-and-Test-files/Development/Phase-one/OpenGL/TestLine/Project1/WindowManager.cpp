@@ -1,7 +1,19 @@
 #include "WindowManager.h"
 
+int _winPosX = 500;
+int _winPosY = 500;
+int _winWidth = 300;
+int _winHeight = 400;
+
 WindowManager::WindowManager() {
-}
+}//WindowManager
+
+WindowManager::WindowManager(int _windowPositionX, int _windowPositionY, int _windowWidth, int _windowHeight) {
+	_windowPositionX = _winPosX;
+    _windowPositionY = _winPosY;	
+    _windowWidth = _winWidth;
+    _windowHeight = _winHeight;
+}//WindowManager
 
 WindowManager::~WindowManager() {
 	glutDestroyWindow(1);
@@ -14,24 +26,22 @@ void WindowManager::run() {
 void WindowManager::initialiseWindow() {
 	glutInit(&__argc,&*__argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-	
-	glutInitWindowPosition(800,100);
-    glutInitWindowSize(600,600);
-	
+	glutInitContextProfile(GLUT_CORE_PROFILE );
+    glutInitContextFlags(GLUT_DEBUG);
+	glutInitContextVersion (2, 0);
+	glutInitWindowPosition(_winPosX,_winPosY);
+    glutInitWindowSize(_winWidth,_winHeight);
 	glutCreateWindow("Test");
     glClearColor(1.5,0.0,0.0,1.0);
 	
-	//glutInitContextVersion (2, 0);
 	printf("The OpenGL version: %s\n", glGetString(GL_VERSION));
 	printf("\nThe Vendor: %s\n", glGetString(GL_VENDOR));
 	printf("\nThe Renderer: %s\n", glGetString(GL_RENDERER));
 	printf("\nThe GLSL shading language version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 
-//	glutInitContextProfile (GLUT_CORE_PROFILE );
-//glutInitContextFlags(GLUT_DEBUG);
 
-
+	
 	/*
 	glutDisplayFunc();
 	glutIdleFunc();
@@ -39,6 +49,10 @@ void WindowManager::initialiseWindow() {
 	glutKeyboardFunc();
 	*/
 	setupGlew();
+	//glutDisplayFunc(render());
+
+	
+	
 	render();
 }//initialiseWindow
 
@@ -62,3 +76,9 @@ void WindowManager::setupGlew() {
 		exit (1);
 	}
 }//setupGlew
+
+void WindowManager::resizeWindow() {}
+
+void WindowManager::InputHandler() {}
+
+void WindowManager::updateWindow() {}
