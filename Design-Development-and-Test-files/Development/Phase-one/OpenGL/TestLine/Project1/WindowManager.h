@@ -18,7 +18,7 @@ public:
     void setupGlew();
 	void run();
 	
-	void render();
+	void render(void);
 	void InputHandler();
 	void mouseHandler(int,int,int,int);
 	void resizeWindow(int,int);
