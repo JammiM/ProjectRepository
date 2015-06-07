@@ -1,9 +1,9 @@
 #include "WindowManager.h"
 
 int _winPosX = 500;
-int _winPosY = 500;
-int _winWidth = 300;
-int _winHeight = 400;
+int _winPosY = 100;
+int _winWidth = 600;
+int _winHeight = 600;
 
 WindowManager::WindowManager() {
 }//WindowManager
@@ -20,13 +20,12 @@ WindowManager::~WindowManager() {
 }
 
 void WindowManager::run() {
-	//glutDisplayFunc(render);
-	render();
+	glutDisplayFunc(render);
 	glutReshapeFunc(resizeWindow);
 	glutMouseFunc(mouseHandler);
-	glutIdleFunc(updateWindow);
-	//glutKeyboardFunc(InputHandler);
-	glutSwapBuffers();
+	//glutIdleFunc(updateWindow);
+	glutKeyboardFunc(InputHandler);
+	glutTimerFunc( 1, updateWindow, 1 );
 	glutMainLoop();	
 }
 
@@ -48,11 +47,14 @@ void WindowManager::initialiseWindow() {
 }//initialiseWindow
 
 void WindowManager::render() {
-    glClearColor(1.0f,1.0f,0.0f,1.0f);
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClear(GL_COLOR_BUFFER_BIT);
-    glLoadIdentity();
-    glFlush();
+    glClearColor(0.0f,0.0f,0.0f,1.0f);
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	glEnable( GL_CULL_FACE );
+	glLoadIdentity();
+	glTranslatef( 0.0f, 0.0f, -10.0f );
+	glutWireCube( 1.0 );
+	glutSwapBuffers();
+	glFlush();
 }//resizeWindow
 
 void WindowManager::setupGlew() {
@@ -73,14 +75,23 @@ void WindowManager::resizeWindow(int _winWidth, int _winHeight) {
 	glViewport(0,0,(GLsizei)_winWidth,(GLsizei) _winHeight);
 	glMatrixMode(GL_PROJECTION); 
 	glLoadIdentity(); 
-	gluPerspective(45, (GLfloat)_winWidth / (GLfloat)_winHeight, 1.0, 200.0);
+	gluPerspective(45, (GLfloat)_winWidth / (GLfloat)_winHeight, 1.0, 50.0);
     glMatrixMode(GL_MODELVIEW);
-	}//resizeWindow
+}//resizeWindow
 
-//void WindowManager::InputHandler() {}
+void WindowManager::InputHandler( unsigned char _key, int x, int y ) {
+    switch ( _key )
+    {
+        case VK_ESCAPE:
+            exit( 0 );
+            break;
+    }
+}//InputHandler
 
-void WindowManager::updateWindow() {
-}
+void WindowManager::updateWindow(int _clicker) {
+	glutPostRedisplay();
+	glutTimerFunc( 1, updateWindow, _clicker );
+}//updateWindow
 
 void WindowManager::mouseHandler(int theButton, int theState, int x, int y) {
      switch (theButton) {
@@ -108,4 +119,4 @@ void WindowManager::mouseHandler(int theButton, int theState, int x, int y) {
             }
             break;
     };
-}
+}//mouseHandler

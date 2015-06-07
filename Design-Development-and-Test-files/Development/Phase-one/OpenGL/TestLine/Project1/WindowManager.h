@@ -19,8 +19,8 @@ public:
 	void run();
 	
 	static void render();
-	//static void InputHandler(UCHAR,int, int);
+	static void InputHandler(unsigned char,int, int);
 	static void mouseHandler(int,int,int,int);
 	static void resizeWindow(int,int);
-	static void updateWindow();
+	static void updateWindow(int);
 };
