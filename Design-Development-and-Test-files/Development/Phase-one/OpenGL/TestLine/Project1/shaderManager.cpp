@@ -36,6 +36,47 @@ GLint shaderManager::createShader(GLenum _type, string _source){
 	return shader;
 }
 
+void shaderManager::printShaderLog(GLint _shaderId) {
+    GLint log_length = 0;
+
+    glGetShaderiv(_shaderId, GL_INFO_LOG_LENGTH, &log_length);
+    if (log_length) {
+        char* log = (char*) malloc(log_length);
+        glGetShaderInfoLog(_shaderId, log_length, &log_length, log);
+        fprintf(stderr, "Shader error: %s\n", log);
+        free(log);
+    }
+}//printShaderLog
+
+
+//(GLenum, const char*,GLint*);
+//(GLenum, const char*,GLuint*);
+
+void shaderManager::loadShader(GLenum _shaderType, const char* _shaderSourceCode, GLuint* _shaderId) {
+    GLint compiled_status = 0;
+    *_shaderId = glCreateShader(_shaderType);
+    glShaderSource(*_shaderId, 1, &_shaderSourceCode, NULL);
+    glCompileShader(*_shaderId);
+    glGetShaderiv(*_shaderId, GL_COMPILE_STATUS, &compiled_status);
+    if (compiled_status != GL_TRUE) {
+        fprintf(stderr, "The shader did not compile.\n");
+        printShaderLog(*_shaderId);
+        glDeleteShader(*_shaderId);
+        *_shaderId = 0;;
+    }
+}//load_shader
+
+
+
+
+
+
+
+
+
+
+
+
 
 //shaderManager::initShaderProgram() {//}GLuint program, GLuint  	shader){
 	

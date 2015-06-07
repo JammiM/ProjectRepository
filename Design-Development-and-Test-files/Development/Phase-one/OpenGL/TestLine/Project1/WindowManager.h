@@ -14,11 +14,13 @@ public:
 	WindowManager(int,int,int,int);
 	~WindowManager();
 
-	void run();
 	void initialiseWindow();
+    void setupGlew();
+	void run();
+	
 	void render();
-	void setupGlew();
 	void InputHandler();
-	void resizeWindow();
+	void mouseHandler(int,int,int,int);
+	void resizeWindow(int,int);
 	void updateWindow();
 };

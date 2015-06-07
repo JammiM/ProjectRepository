@@ -1,4 +1,4 @@
-#ifdef _WIN32
+#ifdef WIN32
 #include <windows.h>
 #define WIN32_LEAN_AND_MEAN
 #define WIN32_EXTRA_LEAN

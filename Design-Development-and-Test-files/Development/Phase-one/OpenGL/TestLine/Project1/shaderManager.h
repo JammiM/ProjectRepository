@@ -13,7 +13,8 @@ public:
 	shaderManager();
 	~shaderManager();
 	GLint createShader(GLenum, string);
-	void loadShader();
+	void printShaderLog(GLint);
+	void loadShader(GLenum, const char*,GLuint*);
 	void initShaderProgram(GLint,GLint);
 	GLuint getShaderId();
 	
