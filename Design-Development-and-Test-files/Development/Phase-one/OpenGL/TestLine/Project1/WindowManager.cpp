@@ -19,55 +19,14 @@ WindowManager::~WindowManager() {
 	glutDestroyWindow(1);
 }
 
-
-void uResize(int _width, int _height) {
-	glViewport(0,0,(GLsizei)_width,(GLsizei) _height);
-	glMatrixMode(GL_PROJECTION); 
-	glLoadIdentity(); 
-	gluPerspective(60, (GLfloat)_width / (GLfloat)_height, 1.0, 100.0);
-    glMatrixMode(GL_MODELVIEW);
-	}//resizeWindow
-
-
-void Rrender() {
-    glClearColor(1.0f,1.0f,0.0f,1.0f);
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClear(GL_COLOR_BUFFER_BIT);
-    glLoadIdentity();
-    glFlush();
-}//resizeWindow
-
-
 void WindowManager::run() {
-	//resizeWindow(_winWidth,_winHeight);
-	//glutReshapeFunc(resizeWindow(_winWidth,_winHeight));
-	//glutDisplayFunc(updateWindow);
-
-	/*
-	glutDisplayFunc();
-	glutIdleFunc();
-	glutReshapeFunc();
-	glutKeyboardFunc();
-	*/
-
-	//glutMouseFunc(mouseHandler);
-	//glutDisplayFunc(render());
-
-	//glutDisplayFunc(*render());
-	//glutDisplayFunc(WindowManager::render());
-	//glutReshapeFunc(void *resizeWindow(_width,_height));
-	//glutDisplayFunc(void render());
-	//glutDisplayFunc(void (render()));
-	
-	//glutDisplayFunc(ren
-
-  //glutDisplayFunc(void (* callback)( void ) );
-	//glutDisplayFunc(Rrender);
-    render();
-	
-
+	//glutDisplayFunc(render);
+	render();
+	glutReshapeFunc(resizeWindow);
+	glutMouseFunc(mouseHandler);
+	glutIdleFunc(updateWindow);
+	//glutKeyboardFunc(InputHandler);
 	glutSwapBuffers();
-
 	glutMainLoop();	
 }
 
@@ -118,7 +77,7 @@ void WindowManager::resizeWindow(int _winWidth, int _winHeight) {
     glMatrixMode(GL_MODELVIEW);
 	}//resizeWindow
 
-void WindowManager::InputHandler() {}
+//void WindowManager::InputHandler() {}
 
 void WindowManager::updateWindow() {
 }
@@ -134,9 +93,19 @@ void WindowManager::mouseHandler(int theButton, int theState, int x, int y) {
             break;
 
         case GLUT_MIDDLE_BUTTON:
+			if (theState == GLUT_DOWN) {
+                fprintf(stderr,"mid btn pressed\n");
+            } else if (theState == GLUT_UP) {
+                fprintf(stderr,"mid btn released\n");
+            }
             break;
 
         case GLUT_RIGHT_BUTTON:
+			if (theState == GLUT_DOWN) {
+                fprintf(stderr,"rt btn pressed\n");
+            } else if (theState == GLUT_UP) {
+                fprintf(stderr,"rt btn released\n");
+            }
             break;
     };
 }
