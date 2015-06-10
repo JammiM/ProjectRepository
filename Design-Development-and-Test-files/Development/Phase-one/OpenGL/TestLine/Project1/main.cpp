@@ -15,7 +15,6 @@
 
 WindowManager _windowManager;
 
-
 int main(int argc, char* argv[]) {
 	_windowManager.initialiseWindow();
 	_windowManager.setupGlew();

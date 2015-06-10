@@ -1,9 +1,13 @@
 #include "WindowManager.h"
 
+#pragma region variables
+
 int _winPosX = 500;
 int _winPosY = 100;
 int _winWidth = 600;
 int _winHeight = 600;
+
+#pragma endregion globals
 
 WindowManager::WindowManager() {
 }//WindowManager
@@ -46,17 +50,6 @@ void WindowManager::initialiseWindow() {
 
 }//initialiseWindow
 
-void WindowManager::render() {
-    glClearColor(0.0f,0.0f,0.0f,1.0f);
-	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-	glEnable( GL_CULL_FACE );
-	glLoadIdentity();
-	glTranslatef( 0.0f, 0.0f, -10.0f );
-	glutWireCube( 1.0 );
-	glutSwapBuffers();
-	glFlush();
-}//resizeWindow
-
 void WindowManager::setupGlew() {
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
@@ -70,6 +63,20 @@ void WindowManager::setupGlew() {
 		exit(1);
 	}
 }//setupGlew
+
+void WindowManager::render() {
+    glClearColor(0.0f,0.0f,0.0f,1.0f);
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	glEnable( GL_CULL_FACE );
+	glLoadIdentity();
+	glTranslatef( 0.0f, 0.0f, -10.0f );
+	static float	fRotAngle = 0.0f;
+	glRotatef( fRotAngle, 0.0f, 1.0f, 0.0f );
+	fRotAngle	+= 0.5f;
+	glutWireCube( 1.0 );
+	glutSwapBuffers();
+	glFlush();
+}//resizeWindow
 
 void WindowManager::resizeWindow(int _winWidth, int _winHeight) {
 	glViewport(0,0,(GLsizei)_winWidth,(GLsizei) _winHeight);
