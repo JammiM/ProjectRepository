@@ -46,11 +46,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\James\Desktop\tri_2\drivers\freeglut\include\GL;C:\Users\James\Desktop\tri_2\drivers\glm;$(ProjectDir)..\..\drivers\glew-1.11.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\drivers\freeglut\include\GL;$(ProjectDir)..\..\..\drivers\glm;$(ProjectDir)..\..\..\drivers\glew-1.11.0\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\glew-1.11.0\lib\Release\Win32;C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\drivers\glew-1.11.0\lib\Release\Win32;$(ProjectDir)..\..\..\drivers\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

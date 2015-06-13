@@ -1,14 +1,11 @@
-﻿Build started 17/04/2015 20:47:46.
-     1>Project "C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\Qt\Base\OGL\OGL.vcxproj" on node 2 (Build target(s)).
+﻿Build started 12/06/2015 13:29:27.
+     1>Project "C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\Qt\Base\OGL\OGL.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\Qt\Base\OGL\..\drivers\Qt\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\Temp\\" /Fd"Debug\Temp\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\Qt\Base\OGL\..\drivers\Qt\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\Temp\\" /Fd"Debug\Temp\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>CL : warning : Inclusion of header files from include/Qt is deprecated.
-       Link:
-         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\Qt\Base\OGL\Debug\OGL.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\Qt\Base\OGL\..\drivers\Qt\lib" QtCored4.lib QtGuid4.lib QtOpenGLd4.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\Qt\Base\OGL\Debug\OGL.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\Qt\Base\OGL\Debug\OGL.lib" /MACHINE:X86 Debug\Temp\main.obj
-         OGL.vcxproj -> C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\Qt\Base\OGL\Debug\OGL.exe
-     1>Done Building Project "C:\Users\James\Documents\GitHub\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\Qt\Base\OGL\OGL.vcxproj" (Build target(s)).
+     1>c:\users\james\desktop\projectrepository\design-development-and-test-files\development\phase-one\opengl\qt\base\ogl\main.cpp(1): fatal error C1083: Cannot open include file: 'Qt\qapplication.h': No such file or directory
+     1>Done Building Project "C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\Qt\Base\OGL\OGL.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:11.13
+Time Elapsed 00:00:00.79

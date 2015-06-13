@@ -1,9 +1,9 @@
-﻿Build started 14/03/2015 14:55:33.
-     1>Project "C:\Users\James\Desktop\New Folder\-16\OpenGL\OpenGL\OpenGL.vcxproj" on node 2 (Build target(s)).
+﻿Build started 13/06/2015 20:18:39.
+     1>Project "C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\3\vertexArray\OpenGL\OpenGL\OpenGL.vcxproj" on node 2 (Build target(s)).
      1>Link:
-         OpenGL.vcxproj -> C:\Users\James\Desktop\New Folder\-16\OpenGL\Debug\OpenGL.exe
-     1>Done Building Project "C:\Users\James\Desktop\New Folder\-16\OpenGL\OpenGL\OpenGL.vcxproj" (Build target(s)).
+         OpenGL.vcxproj -> C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\3\vertexArray\OpenGL\Debug\OpenGL.exe
+     1>Done Building Project "C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\3\vertexArray\OpenGL\OpenGL\OpenGL.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.15
+Time Elapsed 00:00:00.21

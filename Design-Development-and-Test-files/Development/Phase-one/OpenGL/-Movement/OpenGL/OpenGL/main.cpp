@@ -203,9 +203,6 @@ int main(int argc, char* argv[]) {
     fprintf(stderr, "Error: your graphic card does not support OpenGL 2.0\n");
     return 1;
   }
-
-
-
   if (init_resources()) {
     glutDisplayFunc(onDisplay);
     glutIdleFunc(onIdle);
@@ -217,5 +214,3 @@ int main(int argc, char* argv[]) {
   free_resources();
   return 0;
 }
-
-

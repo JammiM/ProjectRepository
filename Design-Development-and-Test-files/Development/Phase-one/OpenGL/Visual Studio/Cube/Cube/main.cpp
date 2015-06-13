@@ -28,34 +28,23 @@ int main(int argc, char** argv) {
 
 
 	glutDisplayFunc(initializeRendering);
-	glutKeyboardFunc(keyboardInputHandler);
-	glutMouseFunc(mouseInputHandler);
+	//glutKeyboardFunc(keyboardInputHandler);
+	//glutMouseFunc(mouseInputHandler);
 
 	glutMainLoop();
 
 }//main
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 void initializeRendering(void){
 	glClearColor(0,0,0,1);
 	glEnable(GL_DEPTH_TEST);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glGenBuffers(1,&vboId);
-	glBindBuffer(GL_ARRAY_BUFFER,vboId);
-	glBufferData(GL_ARRAY_BUFFER,sizeof(f), f, GL_STATIC_DRAW);
+
+	//glGenBuffers(
+	//glGenBuffers(1,&vboId);
+	//glBindBuffer(GL_ARRAY_BUFFER,vboId);
+	//glBufferData(GL_ARRAY_BUFFER,sizeof(f), f, GL_STATIC_DRAW);
 
 	/*
 	glBegin(GL_TRIANGLES);
@@ -83,7 +72,7 @@ void initializeRendering(void){
 	glutSwapBuffers();
 }
 
-
+/*
 void keyboardInputHandler(unsigned char c, int x, int y){
 	if(c== 27){
 		exit(0);
@@ -97,3 +86,5 @@ void mouseInputHandler(int button, int state, int x,int y){
 	}
 
 }
+
+*/
