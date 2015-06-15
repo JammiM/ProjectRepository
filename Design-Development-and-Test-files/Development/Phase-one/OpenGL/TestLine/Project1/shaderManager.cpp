@@ -1,6 +1,9 @@
 #include "shaderManager.h"
 
 
+GLint shaderProgram;
+GLint attributeLocation;
+
 shaderManager::shaderManager()//(string _name)
 {
 //	if(_name.size = NULL) {
@@ -47,10 +50,6 @@ void shaderManager::printShaderLog(GLint _shaderId) {
         free(log);
     }
 }//printShaderLog
-
-
-//(GLenum, const char*,GLint*);
-//(GLenum, const char*,GLuint*);
 
 void shaderManager::loadShader(GLenum _shaderType, const char* _shaderSourceCode, GLuint* _shaderId) {
     GLint compiled_status = 0;

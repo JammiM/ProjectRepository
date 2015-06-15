@@ -73,7 +73,11 @@ void WindowManager::render() {
 	static float	fRotAngle = 0.0f;
 	glRotatef( fRotAngle, 0.0f, 1.0f, 0.0f );
 	fRotAngle	+= 0.5f;
-	glutWireCube( 1.0 );
+	
+
+	glutSolidDodecahedron();
+	//glutSolidCube(2);
+	//glutWireCube( 1.0 );
 	glutSwapBuffers();
 	glFlush();
 }//resizeWindow
