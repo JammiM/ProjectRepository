@@ -3,9 +3,9 @@
 #include <math.h>
 #include <glew.h>
 #include <freeglut.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/gtc/type_ptr.hpp>
 
 GLuint program;
 GLint attribute_coord2d;
@@ -105,6 +105,7 @@ void onDisplay()
 void free_resources()
 {
   glDeleteProgram(program);
+  //glDeleteBuffers(1, &vbo_triangle);
 }
 
 

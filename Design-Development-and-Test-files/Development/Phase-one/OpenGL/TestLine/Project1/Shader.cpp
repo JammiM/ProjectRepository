@@ -1,5 +1,15 @@
 #include "shader.h"
 
+GLint shader::getShaderId() {
+	return shaderId;
+}
+
+GLint shader::createShaderFromFile(GLint _shader, GLchar* _shaderSource) {
+	GLint pppp = glCreateShader(GL_VERTEX_SHADER);
+
+	return pppp;
+}
+
 GLint shader::createShader(GLint _shader, GLchar* _shaderSource) {
 
 	//GLint shader;
@@ -33,4 +43,4 @@ GLint shader::createShaderProgram(GLint _vertexShader, GLint _fragmentShader) {
 		printf("Error creating shader program");
 		exit(0);
 	}
-}
+}//createShaderProgram

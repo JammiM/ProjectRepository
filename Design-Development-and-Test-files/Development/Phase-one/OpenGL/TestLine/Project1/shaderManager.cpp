@@ -1,47 +1,49 @@
 #include "shaderManager.h"
-
+#include "shader.h"
 
 GLint shaderProgram;
 GLint attributeLocation;
 
-shaderManager::shaderManager()//(string _name)
-{
-//	if(_name.size = NULL) {
-//		glCreateProgram(
-//	} else
-//	{
-//		 exit(EXIT_FAILURE);
-//	}
+
+string GLSLVersion = "#version 120\n";
+//string c = ReadTextFile("common.glsl");
+
+
+string vertexShaderSource = "";
+string fragmentShaderSource = "";
+
+GLchar const* files[] = { GLSLVersion.c_str(), vertexShaderSource.c_str(), fragmentShaderSource.c_str() }; 
+GLint lenghts[] = { GLSLVersion.size(), vertexShaderSource.size(), fragmentShaderSource.size() };
+//glShaderSource(id, 3, files, lengths);
+
+
+
+
+
+shaderManager::shaderManager() {
 }
 
-shaderManager::~shaderManager(void)
-{
-	
-	//glDeleteProgram(GLint n);
-	//glDeleteShader();
-	//*/
+shaderManager::~shaderManager(void) {
+	glDeleteProgram(shaderProgram);
 }
 
-GLint shaderManager::createShader(GLenum _type, string _source){
-	//type and source.
-	GLint shader;
-	shader = glCreateShader(_type);
-	//glShaderSource(
+GLint shaderManager::createShader(GLenum _type, string *_source){
+	GLint shader = glCreateShader(_type);
+	//const GLchar *source = (const GLchar *)_source.c_str();
+//glShaderSource(vertexShader, 1, &source, 0);
+	//glShaderSource(shader,1, (const GLchar *const*)_source,  //sizeof(_source));
 	//glShaderSource();
-	//glIsShader();
-
-	glCompileShader(shader);
-//	void glCompileShader(GLuint shader);
-	//error handling
-
-
-
-	return shader;
-}
+	if(glIsShader(shader) == GL_TRUE) {
+		glCompileShader(shader); 
+		return shader;
+	} else {
+		printShaderLog(shader);
+		return 0;
+	}
+}//createShader
 
 void shaderManager::printShaderLog(GLint _shaderId) {
     GLint log_length = 0;
-
     glGetShaderiv(_shaderId, GL_INFO_LOG_LENGTH, &log_length);
     if (log_length) {
         char* log = (char*) malloc(log_length);
@@ -49,11 +51,48 @@ void shaderManager::printShaderLog(GLint _shaderId) {
         fprintf(stderr, "Shader error: %s\n", log);
         free(log);
     }
+
+	/*
+	GLint shaderManager::getShaderId() {
+		GLint n = glCreateShader();
+		return n;
+	}
+	*/
+
+		/*
+	GLint subshader_compiled;
+	glGetShaderiv(subShader, GL_COMPILE_STATUS, &subshader_compiled);
+			if (subshader_compiled != GL_TRUE)
+			{
+				GLsizei dataLog_length = 0;
+				GLchar message[1000];
+				glGetShaderInfoLog(subShader, 1000, &dataLog_length, message);
+				// Write the error to a log
+			}
+			*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }//printShaderLog
 
 void shaderManager::loadShader(GLenum _shaderType, const char* _shaderSourceCode, GLuint* _shaderId) {
     GLint compiled_status = 0;
     *_shaderId = glCreateShader(_shaderType);
+
     glShaderSource(*_shaderId, 1, &_shaderSourceCode, NULL);
     glCompileShader(*_shaderId);
     glGetShaderiv(*_shaderId, GL_COMPILE_STATUS, &compiled_status);
@@ -65,37 +104,65 @@ void shaderManager::loadShader(GLenum _shaderType, const char* _shaderSourceCode
     }
 }//load_shader
 
-
-
-
-
-
-
-
-
-
-
-
-
-//shaderManager::initShaderProgram() {//}GLuint program, GLuint  	shader){
-	
-	/*
-	glCreateProgram();
-	glAttachShader();
-	glAttachShader();
-	glLinkProgram();
-	glGetProgramInfoLog();
-	glIsProgram();
-	*/
-
-
-	/*
-	if() {
-	glUseProgram();	
+GLint shaderManager::initShaderProgram(GLint _vertexShader, GLint _fragmentShader){
+	GLuint _shaderProgram = glCreateProgram();
+	glAttachShader(_shaderProgram, _vertexShader);
+	glAttachShader(_shaderProgram, _fragmentShader);
+	glLinkProgram(_shaderProgram);
+	//glGetProgramInfoLog(
+	if(glIsProgram(_shaderProgram)) { 
+		glUseProgram(_shaderProgram);
+		return _shaderProgram;
+		} else {
+		  return 0;
 	}
-	*/
-	
-//}
+}//initShaderProgram
+
+
+
+
+/*
+GLint setupShaders () {
+	//GLint id = glCreateShader();
+	glShaderSource(id, 3, files, lenghts);
+
+	return id;
+}
+*/
+
+
+
+
+
+GLint setupShader(const GLchar *shaderSource) {
+
+	GLint shaderId;
+
+
+	return shaderId;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -117,17 +184,9 @@ void shaderManager::loadShader(GLenum _shaderType, const char* _shaderSourceCode
 			}
 			*/
 
-//	if (!glIsShader(subShader)){
-		
-//		cout << "Error creating sub shader";
-//		return -1;
-//	} else {
-
-	
 //		return subShader;
 //	}
 //}//createSubShader
-
 
 /*
 
@@ -168,29 +227,8 @@ void initBuffer(GLint EleArray, GLsizeiptr data) {
 
 
 
-void intialiseGL() {}
-
-void line() {}
-
-void createBuffers() {}
-
-void releaseBuffers() {
-	glBindBuffer(GL_ARRAY_BUFFER, NULL);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
-	// TODO ADD TO DECONSTRIOR glDeleteShader(shader);
-}
-
-
 void destroyEverything() {
 	glutExit();
 }
 
-
-void initScene() {
-            glClearColor(0.0, 0.0, 0.0, 0.0);
-          glm::mat4 mvMatrix, pMatrix;
-            glEnable(GL_DEPTH_TEST);
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-       
-	   }
 */

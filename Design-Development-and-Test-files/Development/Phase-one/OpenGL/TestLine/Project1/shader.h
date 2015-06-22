@@ -20,7 +20,9 @@ public:
 	shader();
 	shader(GLint, GLchar);
 	~shader();
+	GLint getShaderId();
 	GLint createShader(GLint _shader, GLchar* shaderSource);
+	GLint createShaderFromFile(GLint _shader, GLchar* shaderSource);	
 	GLint createShaderProgram(GLint _vertexShader, GLint _fragmentShader);
 };
 #endif
