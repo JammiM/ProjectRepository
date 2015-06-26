@@ -10,33 +10,11 @@ using namespace std;
 class shaderManager
 {
 public:
-	shaderManager();
-	~shaderManager();
-	GLint createShader(GLenum, string*);
-	void printShaderLog(GLint);
-	void loadShader(GLenum, const char*,GLuint*);
-	GLint initShaderProgram(GLint,GLint);
-	GLuint getShaderId();
-	
+	void init();
+	void draw();
+	void clean();
+
 private:
-	/*
-    GLuint shaderId;
-	GLint programId;
-	GLboolean isLinked;
-    GLuint vertexShader;
-    GLuint fragmentShader;
-
-    const GLchar* fragmentShaderSource;
-    string v_shaderSource,f_shaderSource;
-    //GLint modelViewProjectionMatrixId;
-    //GLint viewMatrixId;	
-	*/
-
-	enum shaderType {
-		v = GL_VERTEX_SHADER, 
-		f = GL_FRAGMENT_SHADER
-	};
-
 
 };
 

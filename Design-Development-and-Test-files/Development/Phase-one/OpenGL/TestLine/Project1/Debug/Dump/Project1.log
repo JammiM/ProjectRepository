@@ -1,11 +1,16 @@
-﻿Build started 17/06/2015 15:54:18.
+﻿Build started 24/06/2015 21:15:31.
      1>Project "C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\Project1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\..\..\drivers\freeglut\include\GL" /I"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\..\..\drivers\glew-1.11.0\include\GL" /I"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\..\..\drivers\glm" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\Dump\\" /Fd"Debug\Dump\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt shaderManager.cpp
-         shaderManager.cpp
-     1>c:\users\james\desktop\projectrepository\design-development-and-test-files\development\phase-one\opengl\testline\project1\shadermanager.cpp(142): error C4700: uninitialized local variable 'shaderId' used
-     1>Done Building Project "C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\Project1.vcxproj" (Build target(s)) -- FAILED.
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\..\..\drivers\freeglut\include\GL" /I"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\..\..\drivers\glew-1.11.0\include\GL" /I"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\..\..\drivers\glm" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\Dump\\" /Fd"Debug\Dump\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Shader.cpp
+         Shader.cpp
+       Link:
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\Debug\Project1.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\..\..\drivers\freeglut\lib" /LIBPATH:"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\..\..\drivers\glew-1.11.0\lib\Release\Win32" freeglut.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\Debug\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\Debug\Project1.lib" /MACHINE:X86 Debug\Dump\main.obj
+         Debug\Dump\Shader.obj
+         Debug\Dump\shaderManager.obj
+         Debug\Dump\WindowManager.obj
+         Project1.vcxproj -> C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\Debug\Project1.exe
+     1>Done Building Project "C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\TestLine\Project1\Project1.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.94
+Time Elapsed 00:00:06.77

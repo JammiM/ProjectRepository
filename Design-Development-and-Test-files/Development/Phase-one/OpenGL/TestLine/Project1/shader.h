@@ -10,19 +10,29 @@ using namespace std;
 class shader
 {
 private:
-	GLint shaderId;
-	const GLchar* shaderSource;
-	enum shaderType 
-	{
-		vertShader, fragShader, shaderProgram
-	};
+
 public:
-	shader();
-	shader(GLint, GLchar);
-	~shader();
-	GLint getShaderId();
-	GLint createShader(GLint _shader, GLchar* shaderSource);
-	GLint createShaderFromFile(GLint _shader, GLchar* shaderSource);	
-	GLint createShaderProgram(GLint _vertexShader, GLint _fragmentShader);
+
+      GLint _shaderProgram;
+      GLint _fragShader; 
+	  GLint _vertShader;
+	  const char* vertexShaderSource;
+	  const char* fragmentShaderSource;
+
+      shader();
+	  ~shader();
+
+      shader(const char* _filePath);
+
+	  GLint createShaderProgram(GLint,GLint);
+	  GLint createFragmentShader(const char*);
+	  GLint createVertexShader(const char*);
+
+	  void setup();
+	  //static char* readShaderFromFile(const char*);
+
+	  //char* readdd(ifstream);
+
+
 };
 #endif

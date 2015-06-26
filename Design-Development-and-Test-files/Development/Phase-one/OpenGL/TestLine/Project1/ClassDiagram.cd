@@ -7,32 +7,18 @@
       <FileName>WindowManager.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="shader">
-    <Position X="2.5" Y="0.5" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="shader::shaderType" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>shader.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
-    <TypeIdentifier>
-      <HashCode>AAAAAIAAAQAAAAAABAAAAAAAAAAAAEAAAAAAAEACAAA=</HashCode>
-      <FileName>shader.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="shaderManager">
     <Position X="4.5" Y="0.5" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="shaderManager::shaderType" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>shaderManager.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAACRAAAAEAAAAACEAAAAAAgqAUAAAAACAAICEAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAIAAABAAAAAAAA=</HashCode>
       <FileName>shaderManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="shader">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAQAAgAAABAAAAAAAEgAAEAAAAAACAEgAgAA=</HashCode>
+      <FileName>shader.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Tahoma" Size="8.25" />

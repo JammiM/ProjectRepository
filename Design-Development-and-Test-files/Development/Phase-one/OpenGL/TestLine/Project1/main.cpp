@@ -4,15 +4,7 @@
 #define WIN32_EXTRA_LEAN
 #endif
 
-//#include <iostream>
-//#include <string>
-//#include <glm/glm.hpp>
-//#include <glm/gtc/matrix_transform.hpp>
-//#include <glm/gtc/type_ptr.hpp>
 #include "WindowManager.h"
-
-//using namespace std;
-
 WindowManager _windowManager;
 
 int main(int argc, char* argv[]) {
