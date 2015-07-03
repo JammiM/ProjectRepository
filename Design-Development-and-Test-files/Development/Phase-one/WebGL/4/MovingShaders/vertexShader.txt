@@ -1,6 +1,0 @@
-		attribute vec2 vertexPostion;
-		varying vec2 textCoord;
-		void main() {
-			textCoord = vertexPostion;
-			gl_Position = vec4(vertexPostion, 0, 1);
-		}

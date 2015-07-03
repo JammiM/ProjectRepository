@@ -41,9 +41,6 @@ function initWebGL() {
 	
 	*/
 	
-	
-
-
 
 function main() {
   // Get A WebGL context
@@ -111,11 +108,13 @@ function createSquare(gl, xCoord, yCoord, size) {
      x2, y2];
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(listOfVertices), gl.STATIC_DRAW);
 
-  
- 
 }
 
-
+var incrementNumber = 0;
+function add() {
+incrementNumber++;
+    document.getElementById('ooo').innerHTML= "Currently: " + incrementNumber;
+}
 
 </script>
 <script id="2d-vertex-shader" type="x-shader/x-vertex">
@@ -139,7 +138,9 @@ void main() {
 </script>
 </head>
 <body>
-<canvas id="canvas" width="600" height="600"></canvas>
-<p id="num">Number of squares</p>
+	<canvas id="canvas" width="600" height="600"></canvas>
+	<p id="num">Number of squares</p>
+	<button onclick="add();" id="addButton">Press</button>
+<span id="ooo">Currently: </span>
 </body>
 </html>
