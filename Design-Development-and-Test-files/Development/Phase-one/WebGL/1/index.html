@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+	<script id="shader-vs" type="x-shader/x-vertex">
+      attribute vec4 aPosition;
+      void main()
+      {
+        gl_Position = aPosition;
+      }
+    </script>
+    <script id="shader-fs" type="x-shader/x-fragment">
+      precision mediump float;
+      varying vec4 vColour;
+
+      void main()
+      {
+        gl_FragColor = vColour;
+      }
+    </script>
+   </head>
+  <body>
+    <canvas id="glCanvas" width="800" height="600">
+    No canvas element
+    </canvas> 
+    <script src="webGLUtils.js"></script>
+  </body>
+</html>
