@@ -4,11 +4,12 @@ var canvas;
 var gl;
 var vBuffer;
 var program;
-var cubeLenght = 0.50;
-var fieldOfView =0.0;
-var aspectRatio = 0;
-var nearPlane = 0.0;
-var farPlane = 0.0;
+var cubeLenght = 0.25;
+var fieldOfView = 45;
+var aspectRatio = 400 / 300;
+var nearPlane = 0.1;
+var farPlane = 1000.0;
+var moveFactor = 0;
 
 window.onload = function init() {
   canvas = document.getElementById("glCanvas");
@@ -18,26 +19,22 @@ window.onload = function init() {
   var vertShader = createShader("shader-vs", gl.VERTEX_SHADER);
   var fragShader = createShader("shader-fs", gl.FRAGMENT_SHADER);
   
-  createShaderProgram(gl,vertShader,fragShader)
-  //vBuffer = gl.createBuffer();
-  //update();
+  program = gl.createProgram();
+  
+  gl.attachShader(program, vertShader);
+  gl.attachShader(program, fragShader);
+  gl.linkProgram(program);
+  gl.useProgram(program);
+  
+  
+  vBuffer = gl.createBuffer();
+  update();
 	
 }//init
 
-function createShaderProgram(gl, _vertexShader, _fragmentShader) {
-  var program = gl.createProgram();
-  gl.attachShader(program, _vertexShader);
-  gl.attachShader(program, _fragmentShader);
-  gl.linkProgram(program);
-  var isLinked = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (!isLinked) {
-      throw ("failed linking:" + gl.getProgramInfoLog (program));
-  }
-  return program;
-};//createShaderProgram
 
 function update() {
-	 var vertices = new Float32Array([
+	 var points = new Float32Array([
     // top
     -cubeLenght,  cubeLenght, -cubeLenght, 
      cubeLenght,  cubeLenght, -cubeLenght, 
@@ -86,32 +83,53 @@ function update() {
   gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, points, gl.STATIC_DRAW);
 
-  var attribPos = gl.getAttribLocation(program, "aPosition");
-  gl.vertexAttribPointer(attribPos, 3, gl.FLOAT, false, 0, 0);
-  gl.enableVertexAttribArray(attribPos);
-  
-  
-  var mModelView = gl.getUniformLocation(program, "modelViewMatrix");
-  var mProjection = gl.getUniformLocation(program, "projectionMatrix");
+  var loc = gl.getAttribLocation(program, "aPosition");
+  gl.vertexAttribPointer(loc, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(loc);
 
-  var currentProjectionMatrix = mat4.create();
+  var mvLocation = gl.getUniformLocation(program, "modelViewMatrix");
+  var projLocation = gl.getUniformLocation(program, "projectionMatrix");
+  var projMatrix = mat4.create();
+  mat4.perspective(projMatrix, fieldOfView,aspectRatio, nearPlane, farPlane);
   
-  mat4.perspective(currentProjectionMatrix, fieldOfView, aspectRatio, nearPlane, farPlane);
+  gl.uniformMatrix4fv(projLocation, false, projMatrix);
+  gl.enable(gl.DEPTH_TEST);
 
-  
-  gl.uniformMatrix4fv(mProjection, false, currentProjectionMatrix);
-
-  //render();
+  render();
 }//update
 
 function render() {
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
-  
-  	//TODO convert to elementArrayBuffer
-	 gl.drawArrays(gl.TRIANGLES, 0, 0);
-  
-  window.requestAnimationFrame(render);
+
+  var i,j,k;
+
+  var drawCalls = 0;
+
+  var vector = vec3.create();
+  vec3.set(vector, 0.0, 0.0, -10.0);
+
+  //theta += 0.001;
+  for(k = 0; k < 8; k++)
+  {
+    for(j = 0; j < 8; j++)
+    {
+      for(i = 0; i < 8; i++)
+      {
+        var mvMatrix = mat4.create();
+        var newVec = vec3.create();
+        vec3.set(newVec, i - 4, j - 4, k - 4);
+        mat4.rotateX(mvMatrix, mvMatrix, 0.006);
+        mat4.translate(mvMatrix, mvMatrix, vector);
+        mat4.rotateY(mvMatrix, mvMatrix, moveFactor);
+        mat4.translate(mvMatrix, mvMatrix, newVec);
+        var mvLocation = gl.getUniformLocation(program, "modelViewMatrix");
+        gl.uniformMatrix4fv(mvLocation, false, mvMatrix);
+        drawCalls++;
+        gl.drawArrays(gl.TRIANGLES, 0, 36);
+      }
+    }
+  }
 }//render
 
 function createShader(id, type) {
@@ -128,8 +146,20 @@ function createShader(id, type) {
   gl.shaderSource(shader, src);
   gl.compileShader(shader);
   if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    alert("Your shaders are wrong!" + gl.getShaderInfoLog(shader));
+    alert("Error!" + gl.getShaderInfoLog(shader));
     return null;
   }
   return shader;
 }//createShader
+
+function createShaderProgram(_vertexShader, _fragmentShader) {
+  var program = gl.createProgram();
+  gl.attachShader(program, _vertexShader);
+  gl.attachShader(program, _fragmentShader);
+  gl.linkProgram(program);
+  var isLinked = gl.getProgramParameter(program, gl.LINK_STATUS);
+  if (!isLinked) {
+      throw ("failed linking:" + gl.getProgramInfoLog (program));
+  }
+  return program;
+};//createShaderProgram
