@@ -1,28 +1,42 @@
-"using strict";
+//"using strict";
 
 var canvas;
 var gl;
 var vBuffer;
 var program;
 var cubeLenght = 0.50;
+var fieldOfView =0.0;
+var aspectRatio = 0;
+var nearPlane = 0.0;
+var farPlane = 0.0;
 
 window.onload = function init() {
   canvas = document.getElementById("glCanvas");
   gl = canvas.getContext("experimental-webgl");
   gl.viewport(0, 0, canvas.width, canvas.height);
-  program = gl.createProgram();
-
-  gl.attachShader(program, vs);
-  gl.attachShader(program, fs);
-  gl.linkProgram(program);
-  gl.useProgram(program);
-  vBuffer = gl.createBuffer();
+  
+  var vertShader = createShader("shader-vs", gl.VERTEX_SHADER);
+  var fragShader = createShader("shader-fs", gl.FRAGMENT_SHADER);
+  
+  createShaderProgram(gl,vertShader,fragShader)
+  //vBuffer = gl.createBuffer();
   //update();
 	
 }//init
 
-function update()
-{
+function createShaderProgram(gl, _vertexShader, _fragmentShader) {
+  var program = gl.createProgram();
+  gl.attachShader(program, _vertexShader);
+  gl.attachShader(program, _fragmentShader);
+  gl.linkProgram(program);
+  var isLinked = gl.getProgramParameter(program, gl.LINK_STATUS);
+  if (!isLinked) {
+      throw ("failed linking:" + gl.getProgramInfoLog (program));
+  }
+  return program;
+};//createShaderProgram
+
+function update() {
 	 var vertices = new Float32Array([
     // top
     -cubeLenght,  cubeLenght, -cubeLenght, 
@@ -67,6 +81,8 @@ function update()
      cubeLenght,  cubeLenght, -cubeLenght, 
     -cubeLenght, -cubeLenght, -cubeLenght,]);
 	
+	//TODO convert to elementArrayBuffer
+	
   gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, points, gl.STATIC_DRAW);
 
@@ -78,20 +94,27 @@ function update()
   var mModelView = gl.getUniformLocation(program, "modelViewMatrix");
   var mProjection = gl.getUniformLocation(program, "projectionMatrix");
 
-  render();
+  var currentProjectionMatrix = mat4.create();
+  
+  mat4.perspective(currentProjectionMatrix, fieldOfView, aspectRatio, nearPlane, farPlane);
+
+  
+  gl.uniformMatrix4fv(mProjection, false, currentProjectionMatrix);
+
+  //render();
 }//update
 
 function render() {
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   
-  
+  	//TODO convert to elementArrayBuffer
+	 gl.drawArrays(gl.TRIANGLES, 0, 0);
   
   window.requestAnimationFrame(render);
 }//render
 
-function loadShader(id, type)
-{
+function createShader(id, type) {
   var shaderScript = document.getElementById(id);
   var src = "";
   var currentChild = shaderScript.firstChild;
@@ -109,5 +132,4 @@ function loadShader(id, type)
     return null;
   }
   return shader;
-}//loadShader
-
+}//createShader
