@@ -2,29 +2,26 @@
 <html>
   <head>
     <meta charset="utf-8">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.2.1/gl-matrix.js"></script>
+	
 	<script id="shader-vs" type="x-shader/x-vertex">
       attribute vec4 aPosition;
 	  uniform mat4 modelViewMatrix;
       uniform mat4 projectionMatrix;
-      void main()
-      {
+      void main() {
         gl_Position = aPosition * modelViewMatrix * projectionMatrix;
       }
     </script>
     <script id="shader-fs" type="x-shader/x-fragment">
       precision mediump float;
       varying vec4 vColour;
-
-      void main()
-      {
+      void main() {
         gl_FragColor = vColour;
       }
     </script>
    </head>
   <body>
-    <canvas id="glCanvas" width="800" height="600">
-    No canvas element
-    </canvas> 
-    <script src="webGLUtils.js"></script>
+    <canvas id="glCanvas" width="800" height="600" style="border: 2px solid black">No canvas element</canvas> 
   </body>
 </html>

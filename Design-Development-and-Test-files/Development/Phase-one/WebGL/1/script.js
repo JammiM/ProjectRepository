@@ -92,6 +92,22 @@ function render() {
 
 function loadShader(id, type)
 {
+  var shaderScript = document.getElementById(id);
+  var src = "";
+  var currentChild = shaderScript.firstChild;
+  while(currentChild) {
+    if(currentChild.nodeType == currentChild.TEXT_NODE) {
+      src += currentChild.textContent;
+    }
+    currentChild = currentChild.nestSibling;
+  }
+  var shader = gl.createShader(type);
+  gl.shaderSource(shader, src);
+  gl.compileShader(shader);
+  if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    alert("Your shaders are wrong!" + gl.getShaderInfoLog(shader));
+    return null;
+  }
   return shader;
 }//loadShader
 
