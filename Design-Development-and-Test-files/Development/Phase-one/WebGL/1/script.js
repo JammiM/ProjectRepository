@@ -65,15 +65,19 @@ function update()
      cubeLenght,  cubeLenght, -cubeLenght, 
     -cubeLenght,  cubeLenght, -cubeLenght,  
      cubeLenght,  cubeLenght, -cubeLenght, 
-    -cubeLenght, -cubeLenght, -cubeLenght, 
-  ]);
+    -cubeLenght, -cubeLenght, -cubeLenght,]);
 	
-	
-	
-	
-	
-	
-	
+  gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, points, gl.STATIC_DRAW);
+
+  var attribPos = gl.getAttribLocation(program, "aPosition");
+  gl.vertexAttribPointer(attribPos, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(attribPos);
+  
+  
+  var mModelView = gl.getUniformLocation(program, "modelViewMatrix");
+  var mProjection = gl.getUniformLocation(program, "projectionMatrix");
+
   render();
 }//update
 

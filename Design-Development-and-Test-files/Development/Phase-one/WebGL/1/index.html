@@ -4,9 +4,11 @@
     <meta charset="utf-8">
 	<script id="shader-vs" type="x-shader/x-vertex">
       attribute vec4 aPosition;
+	  uniform mat4 modelViewMatrix;
+      uniform mat4 projectionMatrix;
       void main()
       {
-        gl_Position = aPosition;
+        gl_Position = aPosition * modelViewMatrix * projectionMatrix;
       }
     </script>
     <script id="shader-fs" type="x-shader/x-fragment">
