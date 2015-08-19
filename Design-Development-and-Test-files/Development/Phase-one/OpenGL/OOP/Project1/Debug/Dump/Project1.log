@@ -1,0 +1,22 @@
+﻿Build started 19/08/2015 17:39:35.
+     1>Project "C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\OOP\Project1\Project1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\freeglut\include\GL" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\Dump\\" /Fd"Debug\Dump\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Cube.cpp Drawable.cpp main.cpp NonDrawable.cpp Object.cpp
+         Object.cpp
+         NonDrawable.cpp
+         main.cpp
+         Drawable.cpp
+         Cube.cpp
+         Generating Code...
+       Link:
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\OOP\Project1\Debug\Project1.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\drivers\freeglut\lib" freeglut.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\OOP\Project1\Debug\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\OOP\Project1\Debug\Project1.lib" /MACHINE:X86 Debug\Dump\Cube.obj
+         Debug\Dump\Drawable.obj
+         Debug\Dump\main.obj
+         Debug\Dump\NonDrawable.obj
+         Debug\Dump\Object.obj
+         Project1.vcxproj -> C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\OOP\Project1\Debug\Project1.exe
+     1>Done Building Project "C:\Users\James\Desktop\ProjectRepository\Design-Development-and-Test-files\Development\Phase-one\OpenGL\OOP\Project1\Project1.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:11.11

@@ -11,7 +11,7 @@ class Object {
 private:
 	string id;
 	static int numOfObjects;
-	Object arrayOfObjects[];
+	//Object arrayOfObjects[];
 public:
 	string getId() {return id;}
 	void setId(string newId) {id = newId;}
